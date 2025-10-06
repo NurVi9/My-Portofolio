@@ -7,15 +7,18 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
-            --primary: #FF7B00;
-            --primary-light: #FF9A40;
-            --primary-dark: #E56D00;
-            --secondary: #FFF5EB;
-            --accent: #8C5E46;
-            --text: #333333;
-            --text-light: #666666;
-            --white: #FFFFFF;
-            --shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            --primary: #FF0050;
+            --primary-light: #FF3379;
+            --primary-dark: #CC0040;
+            --accent: #b5179e;
+            --secondary: #1E1E1E;
+            --text: #E0E0E0;
+            --text-light: #A0A0A0;
+            --white: #121212;
+            --card-bg: #1E1E1E;
+            --input-bg: #2D2D2D;
+            --border: #404040;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
             --radius: 12px;
             --transition: all 0.3s ease;
         }
@@ -28,7 +31,7 @@
         }
 
         body {
-            background: linear-gradient(135deg, var(--secondary) 0%, var(--white) 100%);
+            background: linear-gradient(135deg, var(--white) 0%, var(--secondary) 100%);
             color: var(--text);
             min-height: 100vh;
             padding: 20px;
@@ -61,7 +64,9 @@
         .logo-text {
             font-size: 2.8rem;
             font-weight: 800;
-            color: var(--primary);
+            background: linear-gradient(45deg, var(--primary) 0%, var(--accent) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
             letter-spacing: -1px;
         }
 
@@ -73,11 +78,12 @@
         }
 
         .main {
-            background-color: var(--white);
+            background-color: var(--card-bg);
             border-radius: var(--radius);
             box-shadow: var(--shadow);
             padding: 30px;
             margin-bottom: 30px;
+            border: 1px solid var(--border);
         }
 
         .input-group {
@@ -88,10 +94,12 @@
         .url-input {
             flex: 1;
             padding: 18px 20px;
-            border: 2px solid #e0e0e0;
+            border: 2px solid var(--border);
             border-radius: var(--radius) 0 0 var(--radius);
             font-size: 1rem;
             transition: var(--transition);
+            background-color: var(--input-bg);
+            color: var(--text);
         }
 
         .url-input:focus {
@@ -99,8 +107,12 @@
             border-color: var(--primary);
         }
 
+        .url-input::placeholder {
+            color: var(--text-light);
+        }
+
         .download-btn {
-            background-color: var(--primary);
+            background: linear-gradient(45deg, var(--primary) 0%, var(--primary-dark) 100%);
             color: var(--white);
             border: none;
             padding: 0 30px;
@@ -112,7 +124,7 @@
         }
 
         .download-btn:hover {
-            background-color: var(--primary-dark);
+            background: linear-gradient(45deg, var(--primary-light) 0%, var(--primary) 100%);
         }
 
         .download-btn:active {
@@ -185,8 +197,9 @@
             align-items: center;
             gap: 15px;
             padding: 15px;
-            background-color: var(--secondary);
+            background-color: var(--input-bg);
             border-radius: var(--radius);
+            border: 1px solid var(--border);
         }
 
         .author-avatar {
@@ -225,7 +238,7 @@
             font-weight: 600;
             margin-bottom: 20px;
             padding-bottom: 10px;
-            border-bottom: 2px solid var(--secondary);
+            border-bottom: 2px solid var(--border);
         }
 
         .options-grid {
@@ -235,15 +248,17 @@
         }
 
         .option-card {
-            background-color: var(--secondary);
+            background-color: var(--input-bg);
             border-radius: var(--radius);
             padding: 20px;
             transition: var(--transition);
+            border: 1px solid var(--border);
         }
 
         .option-card:hover {
             transform: translateY(-5px);
             box-shadow: var(--shadow);
+            border-color: var(--primary);
         }
 
         .option-header {
@@ -267,7 +282,7 @@
             display: block;
             width: 100%;
             padding: 12px;
-            background-color: var(--primary);
+            background: linear-gradient(45deg, var(--primary) 0%, var(--primary-dark) 100%);
             color: var(--white);
             border: none;
             border-radius: var(--radius);
@@ -279,17 +294,18 @@
         }
 
         .option-action:hover {
-            background-color: var(--primary-dark);
+            background: linear-gradient(45deg, var(--primary-light) 0%, var(--primary) 100%);
         }
 
         .music-info {
-            background-color: var(--secondary);
+            background-color: var(--input-bg);
             border-radius: var(--radius);
             padding: 20px;
             margin-top: 30px;
             display: flex;
             align-items: center;
             gap: 20px;
+            border: 1px solid var(--border);
         }
 
         .music-icon {
@@ -311,7 +327,7 @@
         }
 
         .music-download {
-            background-color: var(--primary);
+            background: linear-gradient(45deg, var(--primary) 0%, var(--primary-dark) 100%);
             color: var(--white);
             border: none;
             border-radius: var(--radius);
@@ -319,10 +335,12 @@
             font-weight: 600;
             cursor: pointer;
             transition: var(--transition);
+            text-decoration: none;
+            display: inline-block;
         }
 
         .music-download:hover {
-            background-color: var(--primary-dark);
+            background: linear-gradient(45deg, var(--primary-light) 0%, var(--primary) 100%);
         }
 
         .loading {
@@ -334,7 +352,7 @@
         .spinner {
             width: 50px;
             height: 50px;
-            border: 5px solid var(--secondary);
+            border: 5px solid var(--border);
             border-top: 5px solid var(--primary);
             border-radius: 50%;
             animation: spin 1s linear infinite;
@@ -351,7 +369,7 @@
             top: 20px;
             right: 20px;
             padding: 15px 25px;
-            background-color: var(--primary);
+            background: linear-gradient(45deg, var(--primary) 0%, var(--primary-dark) 100%);
             color: var(--white);
             border-radius: var(--radius);
             box-shadow: var(--shadow);
@@ -480,7 +498,7 @@
         </main>
 
         <footer>
-            <p>&copy; 2023 TikTok Downloader - Download video TikTok tanpa watermark</p>
+            <p>&copy; 2025 TikTok Downloader - Download video TikTok tanpa watermark</p>
         </footer>
     </div>
 
@@ -515,7 +533,9 @@
             // Show notification function
             function showNotification(message, isSuccess = true) {
                 notificationText.textContent = message;
-                notification.style.backgroundColor = isSuccess ? 'var(--primary)' : '#e74c3c';
+                notification.style.background = isSuccess 
+                    ? 'linear-gradient(45deg, var(--primary) 0%, var(--primary-dark) 100%)' 
+                    : 'linear-gradient(45deg, #e74c3c 0%, #c0392b 100%)';
                 notification.classList.add('show');
                 
                 setTimeout(() => {
