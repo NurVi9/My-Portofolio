@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instagram Downloader</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="//cdn.jsdelivr.net/npm/eruda"></script>
+    <script>eruda.init();</script>
+    <style>
+        :root {
+            --primary: #E1306C; --primary-light: #F77737; --primary-dark: #833AB4; --accent: #C13584; --secondary: #1E1E1E; --text: #E0E0E0; --text-light: #A0A0A0; --white: #121212; --card-bg: #1E1E1E; --input-bg: #2D2D2D; --border: #404040; --shadow: 0 4px 12px rgba(0, 0, 0, 0.3); --radius: 12px; --transition: all 0.3s ease;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        body { background: linear-gradient(135deg, var(--white) 0%, var(--secondary) 100%); color: var(--text); min-height: 100vh; padding: 20px; }
+        .container { max-width: 1200px; margin: 0 auto; }
+        header { text-align: center; padding: 30px 0; margin-bottom: 30px; }
+        .logo { display: flex; align-items: center; justify-content: center; gap: 15px; margin-bottom: 15px; }
+        .logo-icon { font-size: 2.5rem; color: var(--primary); }
+        .logo-text { font-size: 2.8rem; font-weight: 800; background: linear-gradient(45deg, var(--primary-dark) 0%, var(--primary) 50%, var(--primary-light) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; letter-spacing: -1px; }
+        .tagline { font-size: 1.2rem; color: var(--text-light); max-width: 600px; margin: 0 auto; }
+        .main { background-color: var(--card-bg); border-radius: var(--radius); box-shadow: var(--shadow); padding: 30px; margin-bottom: 30px; border: 1px solid var(--border); }
+        .input-group { display: flex; margin-bottom: 25px; }
+        .url-input { flex: 1; padding: 18px 20px; border: 2px solid var(--border); border-radius: var(--radius) 0 0 var(--radius); font-size: 1rem; transition: var(--transition); background-color: var(--input-bg); color: var(--text); }
+        .url-input:focus { outline: none; border-color: var(--primary); }
+        .url-input::placeholder { color: var(--text-light); }
+        .download-btn { background: linear-gradient(45deg, var(--primary-dark) 0%, var(--primary) 100%); color: #FFFFFF; border: none; padding: 0 30px; border-radius: 0 var(--radius) var(--radius) 0; font-size: 1rem; font-weight: 600; cursor: pointer; transition: var(--transition); }
+        .download-btn:hover { background: linear-gradient(45deg, #9f4dd4 0%, #e64a85 100%); }
+        .result-container, .debug-container { display: none; margin-top: 30px; animation: fadeIn 0.5s ease; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        .post-info { display: grid; grid-template-columns: 1fr 2fr; gap: 25px; margin-bottom: 30px; }
+        .post-cover { border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow); }
+        .post-cover img { width: 100%; height: auto; display: block; }
+        .post-details { display: flex; flex-direction: column; }
+        .post-caption { font-size: 1.1rem; margin-bottom: 20px; color: var(--text); line-height: 1.6; max-height: 150px; overflow-y: auto; }
+        .author-info { display: flex; align-items: center; gap: 15px; padding: 15px; background-color: var(--input-bg); border-radius: var(--radius); border: 1px solid var(--border); margin-top: auto; }
+        .author-avatar { width: 50px; height: 50px; border-radius: 50%; overflow: hidden; }
+        .author-avatar img { width: 100%; height: 100%; object-fit: cover; }
+        .author-username { font-weight: 600; font-size: 1.1rem; }
+        .download-options { margin-top: 30px; }
+        .section-title { font-size: 1.2rem; font-weight: 600; margin-bottom: 20px; padding-bottom: 10px; border-bottom: 2px solid var(--border); }
+        .options-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 20px; }
+        .option-card { background-color: var(--input-bg); border-radius: var(--radius); padding: 20px; transition: var(--transition); border: 1px solid var(--border); display: flex; flex-direction: column; justify-content: space-between; }
+        .option-card:hover { transform: translateY(-5px); box-shadow: var(--shadow); border-color: var(--primary); }
+        .option-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; }
+        .option-type { font-weight: 600; color: var(--primary); text-transform: capitalize; }
+        .option-action { display: block; width: 100%; padding: 12px; background: linear-gradient(45deg, var(--primary-dark) 0%, var(--primary) 100%); color: #FFFFFF; border: none; border-radius: var(--radius); font-weight: 600; cursor: pointer; text-align: center; transition: var(--transition); text-decoration: none; }
+        .loading { display: none; text-align: center; padding: 40px 0; }
+        .spinner { width: 50px; height: 50px; border: 5px solid var(--border); border-top: 5px solid var(--primary); border-radius: 50%; animation: spin 1s linear infinite; margin: 0 auto 20px; }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        .notification { position: fixed; top: 20px; right: 20px; padding: 15px 25px; background: linear-gradient(45deg, var(--primary) 0%, var(--primary-dark) 100%); color: #FFFFFF; border-radius: var(--radius); box-shadow: var(--shadow); transform: translateX(calc(100% + 20px)); opacity: 0; transition: var(--transition); z-index: 1000; }
+        .notification.show { transform: translateX(0); opacity: 1; }
+        footer { text-align: center; padding: 30px 0; color: var(--text-light); font-size: 0.9rem; }
+        /* Untuk Panel Debug */
+        .debug-container details { border: 1px solid var(--border); border-radius: var(--radius); margin-top: 20px; background-color: var(--input-bg); }
+        .debug-container summary { padding: 15px; font-weight: 600; cursor: pointer; color: var(--primary-light); }
+        .debug-container pre { background-color: #000; color: #0f0; padding: 15px; border-radius: 0 0 var(--radius) var(--radius); white-space: pre-wrap; word-wrap: break-word; font-family: 'Courier New', Courier, monospace; }
+        @media (max-width: 768px) {
+            .post-info { grid-template-columns: 1fr; } .input-group { flex-direction: column; } .url-input { border-radius: var(--radius) var(--radius) 0 0; } .download-btn { border-radius: 0 0 var(--radius) var(--radius); padding: 15px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo"> <i class="fab fa-instagram logo-icon"></i> <h1 class="logo-text">InstaDL</h1> </div>
+            <p class="tagline">Download video, foto, reels, dan stories Instagram dengan kualitas terbaik</p>
+        </header>
+
+        <main class="main">
+            <div class="input-container">
+                <div class="input-group">
+                    <input type="text" class="url-input" id="instaUrl" placeholder="Masukkan URL postingan Instagram...">
+                    <button class="download-btn" id="fetchButton"> <i class="fas fa-download"></i> Download </button>
+                </div>
+            </div>
+
+            <div class="loading" id="loading"> <div class="spinner"></div> <p>Sedang memproses postingan...</p> </div>
+
+            <div class="result-container" id="resultContainer">
+                <div class="post-info">
+                    <div class="post-cover"> <img id="postCover" src="" alt="Post Cover"> </div>
+                    <div class="post-details">
+                        <p class="post-caption" id="postCaption"></p>
+                        <div class="author-info" id="authorInfo">
+                            <div class="author-avatar"> <img id="authorAvatar" src="" alt="Author Avatar"> </div>
+                            <div class="author-username" id="authorUsername"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="download-options">
+                    <h3 class="section-title">Pilihan Download</h3>
+                    <div class="options-grid" id="downloadOptions"></div>
+                </div>
+            </div>
+
+            <div class="debug-container" id="debugContainer">
+                <details>
+                    <summary>Informasi Debug (Klik untuk membuka)</summary>
+                    <pre id="debugOutput">Data mentah dari API akan muncul di sini.</pre>
+                </details>
+            </div>
+        </main>
+
+        <footer> <p>&copy; 2025 Instagram Downloader</p> </footer>
+    </div>
+
+    <div class="notification" id="notification"> <span id="notificationText"></span> </div>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // --- Referensi Elemen ---
+        const elements = {
+            fetchButton: document.getElementById('fetchButton'),
+            instaUrlInput: document.getElementById('instaUrl'),
+            resultContainer: document.getElementById('resultContainer'),
+            loadingElement: document.getElementById('loading'),
+            notification: document.getElementById('notification'),
+            notificationText: document.getElementById('notificationText'),
+            postCover: document.getElementById('postCover'),
+            postCaption: document.getElementById('postCaption'),
+            authorInfo: document.getElementById('authorInfo'),
+            authorAvatar: document.getElementById('authorAvatar'),
+            authorUsername: document.getElementById('authorUsername'),
+            downloadOptions: document.getElementById('downloadOptions'),
+            debugContainer: document.getElementById('debugContainer'),
+            debugOutput: document.getElementById('debugOutput')
+        };
+
+        // --- Fungsi Notifikasi ---
+        function showNotification(message, isSuccess = true) {
+            elements.notificationText.textContent = message;
+            elements.notification.style.background = isSuccess ? 'linear-gradient(45deg, var(--primary-dark) 0%, var(--primary) 100%)' : 'linear-gradient(45deg, #e74c3c 0%, #c0392b 100%)';
+            elements.notification.classList.add('show');
+            setTimeout(() => elements.notification.classList.remove('show'), 4000);
+        }
+
+        // --- Fungsi jika Gagal Menampilkan Data ---
+        function handleDisplayFailure(data) {
+            showNotification('Gagal memproses data, tapi data diterima. Cek panel debug.', false);
+            elements.debugContainer.style.display = 'block';
+            elements.debugOutput.textContent = JSON.stringify(data, null, 2);
+        }
+        
+        function displayInstaData(data) {
+            elements.resultContainer.style.display = 'none';
+            elements.debugContainer.style.display = 'none';
+            elements.downloadOptions.innerHTML = '';
+
+            //Mencari array media (video/gambar) di dalam data
+            let mediaArray = null;
+            if (data.result && Array.isArray(data.result) && data.result.length > 0) {
+                mediaArray = data.result;
+            } else if (data.data && Array.isArray(data.data) && data.data.length > 0) {
+                mediaArray = data.data;
+            } else if (data.media && Array.isArray(data.media) && data.media.length > 0) {
+                mediaArray = data.media;
+            }
+
+            //Jika setelah dicari tetap tidak ada, panggil fungsi gagal
+            if (!mediaArray) {
+                handleDisplayFailure(data);
+                return;
+            }
+
+            //Mengisi informasi umum (cover, caption, author)
+            const firstItem = mediaArray[0];
+            elements.postCover.src = firstItem.thumbnail || firstItem.thumb || firstItem.cover || firstItem.url;
+            elements.postCaption.textContent = data.caption || data.description || data.title || 'Tidak ada caption.';
+
+            const author = data.author || data.user;
+            if (author && author.username) {
+                elements.authorInfo.style.display = 'flex';
+                elements.authorAvatar.src = author.profile_pic_url || author.avatar || '';
+                elements.authorUsername.textContent = author.username || author.nickname || '';
+            } else {
+                elements.authorInfo.style.display = 'none';
+            }
+
+            //  Membuat tombol download untuk setiap media
+            mediaArray.forEach(item => {
+                const downloadUrl = item.url || item.link || item.src;
+                if (!downloadUrl) return
+                let typeText = item.type || 'Media';
+                if (!item.type) {
+                    if (downloadUrl.includes('.mp4')) typeText = 'Video';
+                    if (downloadUrl.includes('.jpg') || downloadUrl.includes('.jpeg') || downloadUrl.includes('.webp')) typeText = 'Gambar';
+                }
+
+                const optionCard = document.createElement('div');
+                optionCard.className = 'option-card';
+                optionCard.innerHTML = `
+                    <div class="option-header">
+                        <span class="option-type">${typeText}</span>
+                    </div>
+                    <a href="${downloadUrl}" class="option-action" download target="_blank">
+                        <i class="fas fa-download"></i> Download
+                    </a>`;
+                elements.downloadOptions.appendChild(optionCard);
+            });
+
+            //Tampilkan hasilnya
+            elements.resultContainer.style.display = 'block';
+            showNotification('Berhasil menampilkan data!', true);
+        }
+
+        // --- Event Listener untuk Tombol Download ---
+        elements.fetchButton.addEventListener('click', function() {
+            const instaUrl = elements.instaUrlInput.value.trim();
+            if (!instaUrl) {
+                showNotification('Masukkan URL postingan Instagram terlebih dahulu', false);
+                return;
+            }
+            
+            // Reset UI
+            elements.loadingElement.style.display = 'block';
+            elements.resultContainer.style.display = 'none';
+            elements.debugContainer.style.display = 'none';
+
+            const apiUrl = `https://dinzid-api.vercel.app/downloader/instagram?url=${encodeURIComponent(instaUrl)}`;
+            
+            fetch(apiUrl)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(`Server merespons dengan status ${response.status}. Mungkin URL salah atau private.`);
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    if (!data) {
+                        throw new Error('API memberikan respons kosong.');
+                    }
+                    displayInstaData(data);
+                })
+                .catch(error => {
+                    console.error('Terjadi error:', error);
+                    showNotification(error.message, false);
+                    elements.debugContainer.style.display = 'block';
+                    elements.debugOutput.textContent = `Terjadi error pada proses fetch:\n\n${error.message}`;
+                })
+                .finally(() => {
+                    elements.loadingElement.style.display = 'none';
+                });
+        });
+    });
+    </script>
+</body>
+</html>
