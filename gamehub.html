@@ -1,0 +1,1270 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GameHub</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --primary: #6c5ce7;
+            --secondary: #a29bfe;
+            --dark: #2d3436;
+            --light: #f5f6fa;
+            --accent: #fd79a8;
+            --success: #00b894;
+            --warning: #fdcb6e;
+            --danger: #d63031;
+            --bg-dark: #1a1a2e;
+            --bg-darker: #0d0d1a;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--light);
+            min-height: 100vh;
+            background-image: linear-gradient(to bottom, var(--bg-dark), var(--bg-darker));
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: rgba(26, 26, 46, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .back-button {
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--light);
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            transition: background 0.3s;
+            text-decoration: none;
+        }
+
+        .back-button:hover {
+            background: var(--primary);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--light);
+        }
+
+        .logo i {
+            color: var(--primary);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        nav a {
+            color: var(--light);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        nav a:hover {
+            color: var(--primary);
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 3px;
+            background-color: var(--primary);
+            transition: width 0.3s;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        .search-container {
+            display: flex;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 25px;
+            padding: 8px 15px;
+            transition: background 0.3s;
+        }
+
+        .search-container:focus-within {
+            background: rgba(255, 255, 255, 0.15);
+            box-shadow: 0 0 0 2px var(--primary);
+        }
+
+        .search-container input {
+            background: transparent;
+            border: none;
+            color: var(--light);
+            outline: none;
+            width: 200px;
+            margin-left: 10px;
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 60px 0;
+            background: linear-gradient(135deg, rgba(108, 92, 231, 0.2), rgba(26, 26, 46, 0.5));
+            border-radius: 20px;
+            margin: 30px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            background: linear-gradient(to right, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 30px;
+            color: #b2bec3;
+        }
+
+        .cta-button {
+            background: linear-gradient(to right, var(--primary), var(--accent));
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 30px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Game Grid */
+        .section-title {
+            font-size: 2rem;
+            margin: 40px 0 20px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 50px;
+            height: 4px;
+            background: var(--primary);
+            border-radius: 2px;
+        }
+
+        .games-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+            margin: 30px 0;
+        }
+
+        .game-card {
+            background: rgba(26, 26, 46, 0.6);
+            border-radius: 15px;
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .game-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .game-card img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+        }
+
+        .game-content {
+            padding: 20px;
+        }
+
+        .game-card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+
+        .game-card p {
+            color: #b2bec3;
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .game-meta {
+            display: flex;
+            justify-content: space-between;
+            color: #636e72;
+            font-size: 0.85rem;
+        }
+
+        .game-rating {
+            color: var(--warning);
+        }
+
+        .wishlist-icon {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: rgba(0, 0, 0, 0.5);
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            transition: all 0.3s;
+        }
+
+        .wishlist-icon.active {
+            color: var(--accent);
+            background: rgba(0, 0, 0, 0.7);
+        }
+
+        .wishlist-icon:hover {
+            transform: scale(1.1);
+        }
+
+        /* Categories */
+        .categories {
+            display: flex;
+            gap: 15px;
+            margin: 20px 0 40px;
+            flex-wrap: wrap;
+        }
+
+        .category {
+            background: rgba(108, 92, 231, 0.2);
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .category:hover, .category.active {
+            background: var(--primary);
+        }
+
+        /* Popup Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(5px);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .modal.active {
+            display: flex;
+            opacity: 1;
+        }
+
+        .modal-content {
+            background: linear-gradient(135deg, #1a1a2e, #16213e);
+            width: 90%;
+            max-width: 800px;
+            border-radius: 20px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            max-height: 90vh;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+            transform: scale(0.9);
+            animation: modalAppear 0.3s forwards;
+        }
+
+        @keyframes modalAppear {
+            to {
+                transform: scale(1);
+            }
+        }
+
+        .modal-header {
+            padding: 20px;
+            position: relative;
+        }
+
+        .modal-header img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+
+        .close-button {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(0, 0, 0, 0.5);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            transition: background 0.3s;
+            z-index: 10;
+        }
+
+        .close-button:hover {
+            background: var(--danger);
+        }
+
+        .modal-body {
+            padding: 20px;
+            overflow-y: auto;
+        }
+
+        .modal-body h2 {
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        .modal-body p {
+            color: #b2bec3;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .game-details {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .detail-item {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 15px;
+            border-radius: 10px;
+        }
+
+        .detail-item h4 {
+            color: var(--secondary);
+            margin-bottom: 5px;
+            font-size: 0.9rem;
+        }
+
+        .modal-footer {
+            padding: 20px;
+            display: flex;
+            justify-content: flex-end;
+            gap: 15px;
+            background: rgba(0, 0, 0, 0.2);
+        }
+
+        .modal-button {
+            padding: 12px 25px;
+            border-radius: 30px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .play-button {
+            background: linear-gradient(to right, var(--primary), var(--accent));
+            color: white;
+            border: none;
+        }
+
+        .play-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(108, 92, 231, 0.4);
+        }
+
+        .wishlist-button {
+            background: transparent;
+            border: 2px solid var(--secondary);
+            color: var(--secondary);
+        }
+
+        .wishlist-button:hover {
+            background: rgba(162, 155, 254, 0.1);
+        }
+
+        .wishlist-button.active {
+            background: var(--accent);
+            border-color: var(--accent);
+            color: white;
+        }
+
+        /* Footer */
+        footer {
+            background: rgba(26, 26, 46, 0.8);
+            padding: 40px 0;
+            margin-top: 60px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+        }
+
+        .footer-column h3 {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 30px;
+            height: 3px;
+            background: var(--primary);
+        }
+
+        .footer-column p {
+            color: #b2bec3;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: #b2bec3;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--light);
+            transition: background 0.3s, transform 0.3s;
+        }
+
+        .social-links a:hover {
+            background: var(--primary);
+            transform: translateY(-3px);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            margin-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #636e72;
+        }
+
+        /* Toast Notification */
+        .toast {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: var(--success);
+            color: white;
+            padding: 15px 25px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            transform: translateY(100px);
+            opacity: 0;
+            transition: transform 0.3s, opacity 0.3s;
+            z-index: 1000;
+        }
+
+        .toast.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        /* Loading Animation */
+        .loader {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: white;
+            animation: spin 1s ease-in-out infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Wishlist Page */
+        .wishlist-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+            color: #b2bec3;
+        }
+
+        .empty-state i {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            color: var(--secondary);
+        }
+
+        .empty-state p {
+            margin-bottom: 30px;
+            font-size: 1.1rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            nav ul {
+                gap: 15px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .modal-content {
+                flex-direction: column;
+            }
+            
+            .modal-header img {
+                height: 200px;
+            }
+
+            .modal-footer {
+                flex-direction: column;
+            }
+
+            .modal-button {
+                justify-content: center;
+            }
+
+            .wishlist-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container header-content">
+            <div class="header-left">
+                <a href="javascript:history.back()" style="margin-left: -100px;" class="back-button" id="back-button">
+                    <i class="fas fa-arrow-left"></i>
+                </a>
+                <div class="logo">
+                    <i style="margin-left: 35px;" class="fas fa-gamepad"></i>
+                    <span>GameHub</span>
+                </div>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#" id="home-link">Beranda</a></li>
+                    <li><a href="#" id="wishlist-link">Wishlist</a></li>
+                    <li><a href="#kategori-section" id="kategori-link">Kategori</a></li>
+                    <li><a href="#trending-section" id="trending-link">Trending</a></li>
+                    <li><a href="#about-section" id="tentang-link">Tentang</a></li>
+                </ul>
+            </nav>
+            <div class="search-container">
+                <i class="fas fa-search"></i>
+                <input type="text" placeholder="Cari game..." id="search-input">
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <div id="main-page">
+            <section class="hero">
+                <div class="hero-content">
+                    <h1>Temukan Game Favorit Anda</h1>
+                    <p>Jelajahi koleksi game terbaik dari berbagai genre dan platform. Mainkan langsung atau tambahkan ke wishlist untuk dimainkan nanti.</p>
+                    <button class="cta-button" id="explore-button">Jelajahi Sekarang</button>
+                </div>
+            </section>
+
+            <section id="trending-section">
+                <h2 class="section-title">Game Trending</h2>
+                <div class="games-grid" id="trending-games-grid">
+                    </div>
+            </section>
+            
+            <section id="kategori-section">
+                <h2 class="section-title">Kategori Populer</h2>
+                <div class="categories">
+                    <div class="category active" data-category="all">Semua</div>
+                    <div class="category" data-category="action">Action</div>
+                    <div class="category" data-category="quiz">Quiz</div>
+                    <div class="category" data-category="strategy">Strategy</div>
+                    <div class="category" data-category="ridle">Ridle</div>
+                    <div class="category" data-category="puzzle">Puzzle</div>
+                </div>
+            </section>
+
+            <h2 class="section-title">Semua Game</h2>
+            <div class="games-grid" id="games-grid">
+                </div>
+        </div>
+
+        <div id="wishlist-page" style="display: none;">
+            <div class="wishlist-header">
+                <h2 class="section-title">Wishlist Saya</h2>
+                <button class="cta-button" id="back-to-main-from-wishlist">Kembali ke Beranda</button>
+            </div>
+            
+            <div id="wishlist-grid" class="games-grid">
+                </div>
+            
+            <div id="empty-wishlist" class="empty-state" style="display: none;">
+                <i class="fas fa-heart"></i>
+                <h3>Wishlist Anda Kosong</h3>
+                <p>Tambahkan game favorit Anda ke wishlist untuk melihatnya di sini</p>
+                <button class="cta-button" id="browse-games">Jelajahi Game</button>
+            </div>
+        </div>
+    </main>
+
+    <div class="modal" id="game-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <img id="modal-image" src="" alt="Game Image">
+                <div class="close-button" id="close-modal">
+                    <i class="fas fa-times"></i>
+                </div>
+            </div>
+            <div class="modal-body">
+                <h2 id="modal-title">Game Title</h2>
+                <p id="modal-description">Game description goes here.</p>
+                
+                <div class="game-details">
+                    <div class="detail-item">
+                        <h4>Genre</h4>
+                        <p id="modal-genre">Action, Adventure</p>
+                    </div>
+                    <div class="detail-item">
+                        <h4>Platform</h4>
+                        <p id="modal-platform">PC, PlayStation, Xbox</p>
+                    </div>
+                    <div class="detail-item">
+                        <h4>Rating</h4>
+                        <p id="modal-rating">4.8/5</p>
+                    </div>
+                    <div class="detail-item">
+                        <h4>Pengembang</h4>
+                        <p id="modal-developer">Developer Name</p>
+                    </div>
+                </div>
+                
+                <h3>Tentang Game</h3>
+                <p id="modal-about">Detailed description about the game goes here. This section provides more in-depth information about the gameplay, story, and features.</p>
+            </div>
+            <div class="modal-footer">
+                <button class="modal-button wishlist-button" id="modal-wishlist-btn">
+                    <i class="fas fa-heart"></i> Wishlist
+                </button>
+                <button class="modal-button play-button" id="modal-play-btn">
+                    <i class="fas fa-play"></i> Main Sekarang
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="toast" id="toast">
+        <i class="fas fa-check-circle"></i>
+        <span id="toast-message">Game telah ditambahkan ke wishlist</span>
+    </div>
+
+    <footer id="about-section">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Tentang GameHub</h3>
+                    <p>GameHub adalah platform untuk menemukan dan memainkan berbagai game yang saya buat. Kami menyediakan pengalaman bermain terbaik untuk semua pemain.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-discord"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>Link Cepat</h3>
+                    <ul class="footer-links">
+                        <li><a href="#" id="footer-home-link">Beranda</a></li>
+                        <li><a href="#" id="footer-wishlist-link">Wishlist</a></li>
+                        <li><a href="#kategori-section" id="footer-kategori-link">Kategori</a></li>
+                        <li><a href="#trending-section" id="footer-trending-link">Trending</a></li>
+                        <li><a href="#">Kontak</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Dukungan</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Bantuan</a></li>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Kebijakan Privasi</a></li>
+                        <li><a href="#">Syarat & Ketentuan</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 GameHub. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Sample game data - ditambahkan properti gameUrl
+        const games = [
+            {
+                id: 1,
+                title: "Quiz Sejarah",
+                description: "Uji pengetahuan sejarah Anda dengan kuis interaktif yang mencakup sejarah Indonesia, dunia, dan Islam.",
+                image: "https://www.dropbox.com/scl/fi/zcvtqjkeh22b0wsoqev6l/rlXY_znLQcuRTyi7ewERYA.webp?rlkey=n1byktxfp9ar5j5mffuw7g8yp&st=gv9a4n71&dl=1",
+                genre: "Quiz, Sejarah",
+                platform: "Mobile, PC",
+                rating: "4.8/5",
+                developer: "Noirr",
+                about: "Uji pengetahuan sejarah Anda dengan kuis interaktif yang mencakup sejarah Indonesia, dunia, dan Islam. Tantang diri Anda dengan pertanyaan yang semakin menantang!",
+                category: "quiz",
+                gameUrl: "/kuis-1/quiz.html"  // URL halaman game
+            },
+            {
+                id: 2,
+                title: "Quiz Matematika",
+                description: "Game quiz yang bisa untuk belajar matematika agar lebih menyenangkan.",
+                image: "https://res.cloudinary.com/do3yj5r1m/image/upload/v1755986721/adh33fungv7y2fifp6rq.webp",
+                genre: "Quiz",
+                platform: "Mobile, PC",
+                rating: "4.6/5",
+                developer: "Noirr",
+                about: "Tingkatkan kemampuan matematika Anda dengan kuis menyenangkan ini. Cocok untuk semua usia.",
+                category: "quiz",
+                gameUrl: "/kuis-2/quiz2.html"  // URL halaman game
+            },
+            {
+                id: 3,
+                title: "Quiz IPA",
+                description: "Jelajahi dunia ilmu pengetahuan alam dengan kuis interaktif. Topik mencakup Biologi, Fisika, dan Kimia.",
+                image: "https://res.cloudinary.com/do3yj5r1m/image/upload/v1756165499/gx59mnw0lp3lglfityma.webp",
+                genre: "Quiz, IPA",
+                platform: "PC, Mobile",
+                rating: "4.7/5",
+                developer: "Noirr",
+                about: "Jelajahi dunia ilmu pengetahuan alam dengan kuis interaktif. Topik mencakup Biologi, Fisika, dan Kimia, pelajari materi Ilmu Pengetahuan Alam dengan lebih seru, menarik, dan menyenangkan.",
+                category: "quiz",
+                gameUrl: "/kuis-3/quiz3.html"  // URL halaman game
+            },
+            {
+                id: 4,
+                title: "Quiz Astronomi",
+                description: "Jelajahi misteri alam semesta dengan kuis astronomi yang menarik. Pelajari tentang planet, bintang, galaksi, dan fenomena luar angkasa lainnya.",
+                image: "https://res.cloudinary.com/do3yj5r1m/image/upload/v1756290321/mns6faaejzqsyr0lvu14.webp",
+                genre: "Quiz, Astronomi",
+                platform: "PC, Mobile",
+                rating: "4.8/5",
+                developer: "Noirr",
+                about: "Jelajahi misteri alam semesta dengan kuis astronomi yang menarik. Pelajari tentang planet, bintang, galaksi, dan fenomena luar angkasa lainnya, Menjelajahi luar angkasa dengan berbagai macam pertanyaan yang menyenangkan.",
+                category: "quiz",
+                gameUrl: "/kuis-4/quiz4.html"  // URL halaman game
+            },
+            {
+                id: 5,
+                title: "Snake",
+                description: "Permainan ular klasik yang dapat membuat anda nostalgia.",
+                image: "https://res.cloudinary.com/do3yj5r1m/image/upload/v1755969863/Snake-II-Featured_xmmke5.jpg",
+                genre: "Action, Adventure",
+                platform: "PC, Mobile",
+                rating: "4.6/5",
+                developer: "Noirr",
+                about: "Game klasik snake yang menyenangkan. Kendalikan ular Anda untuk memakan makanan dan tumbuh semakin panjang. Hindari tabrakan dengan dinding dan tubuh Anda sendiri!",
+                category: "action",
+                gameUrl: "ular.html"  // URL halaman game
+            },
+            {
+                id: 6,
+                title: "Detective Case",
+                description: "Memecahkan berbagai kasus pencurian, pembunuhan, dll dengan menjadi seorang detektif yang berpengalaman.",
+                image: "https://res.cloudinary.com/do3yj5r1m/image/upload/v1757324706/i8rtm3yaoroch6f0vbhk.jpg",
+                genre: "Puzzle, Ridle",
+                platform: "PC, Mobile",
+                rating: "4.9/5",
+                developer: "Noirr",
+                about: "Rasakan pengalaman menjadi Detectif hebat yang bisa memecahkan berbagai macam kasus, periksa barang, tempat kejadian, dan introgasi para tersangka yang mempunyai berbagai macam alibi.",
+                category: "puzzle",
+                gameUrl: "dcase.html"  // URL halaman game
+            },
+            {
+                id: 7,
+                title: "Segera hadir",
+                description: "Segera hadir",
+                image: "#",
+                genre: "-",
+                platform: "-",
+                rating: "-/5",
+                developer: "-",
+                about: "Segera hadir",
+                category: "-",
+                gameUrl: "#"  // URL khusus untuk game yang belum tersedia
+            }
+        ];
+
+        // DOM elements
+        const gamesGrid = document.getElementById('games-grid');
+        const trendingGamesGrid = document.getElementById('trending-games-grid'); // New element
+        const wishlistGrid = document.getElementById('wishlist-grid');
+        const modal = document.getElementById('game-modal');
+        const closeModal = document.getElementById('close-modal');
+        const modalTitle = document.getElementById('modal-title');
+        const modalImage = document.getElementById('modal-image');
+        const modalDescription = document.getElementById('modal-description');
+        const modalGenre = document.getElementById('modal-genre');
+        const modalPlatform = document.getElementById('modal-platform');
+        const modalRating = document.getElementById('modal-rating');
+        const modalDeveloper = document.getElementById('modal-developer');
+        const modalAbout = document.getElementById('modal-about');
+        const modalWishlistBtn = document.getElementById('modal-wishlist-btn');
+        const modalPlayBtn = document.getElementById('modal-play-btn');
+        const searchInput = document.getElementById('search-input');
+        const categories = document.querySelectorAll('.category');
+        const backButton = document.getElementById('back-button');
+        const toast = document.getElementById('toast');
+        const toastMessage = document.getElementById('toast-message');
+        const exploreButton = document.getElementById('explore-button');
+        const wishlistLink = document.getElementById('wishlist-link');
+        const footerWishlistLink = document.getElementById('footer-wishlist-link');
+        const mainPage = document.getElementById('main-page');
+        const wishlistPage = document.getElementById('wishlist-page');
+        const backToMainBtn = document.getElementById('back-to-main-from-wishlist');
+        const homeLink = document.getElementById('home-link'); // Renamed from back-to-main
+        const footerHomeLink = document.getElementById('footer-home-link');
+        const browseGames = document.getElementById('browse-games');
+        const emptyWishlist = document.getElementById('empty-wishlist');
+
+        // New link elements
+        const kategoriLink = document.getElementById('kategori-link');
+        const trendingLink = document.getElementById('trending-link');
+        const tentangLink = document.getElementById('tentang-link');
+        const footerKategoriLink = document.getElementById('footer-kategori-link');
+        const footerTrendingLink = document.getElementById('footer-trending-link');
+
+        // State management
+        let currentGame = null;
+        let wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+        let filteredGames = [...games];
+        let currentView = 'main'; // 'main' or 'wishlist'
+
+        // Generate game cards
+        function generateGameCards(gamesArray, gridElement) {
+            gridElement.innerHTML = '';
+            gamesArray.forEach(game => {
+                const isInWishlist = wishlist.includes(game.id);
+                
+                const gameCard = document.createElement('div');
+                gameCard.classList.add('game-card');
+                gameCard.innerHTML = `
+                    <img src="${game.image}" alt="${game.title}">
+                    <div class="wishlist-icon ${isInWishlist ? 'active' : ''}" data-game-id="${game.id}">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <div class="game-content">
+                        <h3>${game.title}</h3>
+                        <p>${game.description}</p>
+                        <div class="game-meta">
+                            <span>${game.genre}</span>
+                            <span class="game-rating">${game.rating}</span>
+                        </div>
+                    </div>
+                `;
+                
+                // Add click event to open modal
+                gameCard.addEventListener('click', (e) => {
+                    if (!e.target.closest('.wishlist-icon')) {
+                        openModal(game);
+                    }
+                });
+                
+                // Add wishlist functionality
+                const wishlistIcon = gameCard.querySelector('.wishlist-icon');
+                wishlistIcon.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    toggleWishlist(game.id, wishlistIcon);
+                });
+                
+                gridElement.appendChild(gameCard);
+            });
+        }
+
+        // New function to generate trending games
+        function generateTrendingGames() {
+            const trendingGames = [...games]
+                .filter(game => game.rating !== "-/5") // Filter out upcoming games
+                .sort((a, b) => {
+                    const ratingA = parseFloat(a.rating.split('/')[0]);
+                    const ratingB = parseFloat(b.rating.split('/')[0]);
+                    return ratingB - ratingA;
+                })
+                .slice(0, 4); // Get top 4 trending games
+            
+            generateGameCards(trendingGames, trendingGamesGrid);
+        }
+
+        // Generate wishlist cards
+        function generateWishlistCards() {
+            const wishlistGames = games.filter(game => wishlist.includes(game.id));
+            
+            if (wishlistGames.length === 0) {
+                emptyWishlist.style.display = 'block';
+                wishlistGrid.style.display = 'none';
+            } else {
+                emptyWishlist.style.display = 'none';
+                wishlistGrid.style.display = 'grid';
+                generateGameCards(wishlistGames, wishlistGrid);
+            }
+        }
+
+        // Open modal with game details
+        function openModal(game) {
+            currentGame = game;
+            const isInWishlist = wishlist.includes(game.id);
+            
+            modalTitle.textContent = game.title;
+            modalImage.src = game.image;
+            modalDescription.textContent = game.description;
+            modalGenre.textContent = game.genre;
+            modalPlatform.textContent = game.platform;
+            modalRating.textContent = game.rating;
+            modalDeveloper.textContent = game.developer;
+            modalAbout.textContent = game.about;
+            
+            // Update wishlist button state
+            modalWishlistBtn.classList.toggle('active', isInWishlist);
+            modalWishlistBtn.innerHTML = isInWishlist 
+                ? '<i class="fas fa-check"></i> Dalam Wishlist' 
+                : '<i class="fas fa-heart"></i> Wishlist';
+            
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        // Close modal
+        function closeModalFunc() {
+            modal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Toggle wishlist
+        function toggleWishlist(gameId, element) {
+            const index = wishlist.indexOf(gameId);
+            
+            if (index === -1) {
+                // Add to wishlist
+                wishlist.push(gameId);
+                if (element) element.classList.add('active');
+                showToast('Game telah ditambahkan ke wishlist');
+            } else {
+                // Remove from wishlist
+                wishlist.splice(index, 1);
+                if (element) element.classList.remove('active');
+                showToast('Game telah dihapus dari wishlist');
+            }
+            
+            // Save to localStorage
+            localStorage.setItem('wishlist', JSON.stringify(wishlist));
+            
+            // Update modal button if this game is currently open
+            if (currentGame && currentGame.id === gameId) {
+                const isInWishlist = wishlist.includes(gameId);
+                modalWishlistBtn.classList.toggle('active', isInWishlist);
+                modalWishlistBtn.innerHTML = isInWishlist 
+                    ? '<i class="fas fa-check"></i> Dalam Wishlist' 
+                    : '<i class="fas fa-heart"></i> Wishlist';
+            }
+            
+            // If we're on the wishlist page, refresh it
+            if (currentView === 'wishlist') {
+                generateWishlistCards();
+            }
+
+            // Refresh the main page grids to show updated heart icons
+            generateGameCards(filteredGames, gamesGrid);
+            generateTrendingGames();
+        }
+
+        // Show toast notification
+        function showToast(message) {
+            toastMessage.textContent = message;
+            toast.classList.add('show');
+            
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 3000);
+        }
+
+        // Filter games by search
+        function filterGames() {
+            const searchTerm = searchInput.value.toLowerCase();
+            const activeCategory = document.querySelector('.category.active').dataset.category;
+            
+            filteredGames = games.filter(game => {
+                const matchesSearch = game.title.toLowerCase().includes(searchTerm) || 
+                                    game.description.toLowerCase().includes(searchTerm);
+                const matchesCategory = activeCategory === 'all' || game.category === activeCategory;
+                
+                return matchesSearch && matchesCategory;
+            });
+            
+            generateGameCards(filteredGames, gamesGrid);
+        }
+
+        // Filter games by category
+        function filterByCategory() {
+            categories.forEach(cat => cat.classList.remove('active'));
+            this.classList.add('active');
+            filterGames();
+        }
+
+        // Play game function - dimodifikasi untuk navigasi ke halaman game
+        function playGame() {
+            if (currentGame) {
+                // Jika game belum tersedia (URL = '#')
+                if (currentGame.gameUrl === "#") {
+                    showToast('Game belum tersedia!');
+                    return;
+                }
+                
+                modalPlayBtn.innerHTML = '<div class="loader"></div> Memuat...';
+                
+                // Simulate loading
+                setTimeout(() => {
+                    showToast(`Memulai ${currentGame.title}...`);
+                    closeModalFunc();
+                    
+                    // Redirect to game page after a short delay to show the toast
+                    setTimeout(() => {
+                        window.location.href = currentGame.gameUrl;
+                    }, 1000);
+                    
+                    // Reset play button after a delay
+                    setTimeout(() => {
+                        modalPlayBtn.innerHTML = '<i class="fas fa-play"></i> Main Sekarang';
+                    }, 2000);
+                }, 1500);
+            }
+        }
+
+        // Back button functionality
+        function goBack() {
+            // If modal is open, close it first
+            if (modal.classList.contains('active')) {
+                closeModalFunc();
+            } else if (currentView === 'wishlist') {
+                // If we're on the wishlist page, go back to main page
+                showMainPage();
+            } else {
+                history.back();
+            }
+        }
+
+        // Explore button functionality
+        function exploreGames() {
+            // Scroll to games section
+            document.getElementById('kategori-section').scrollIntoView({ 
+                behavior: 'smooth' 
+            });
+        }
+
+        // Show wishlist page
+        function showWishlistPage(e) {
+            if (e) e.preventDefault();
+            currentView = 'wishlist';
+            mainPage.style.display = 'none';
+            wishlistPage.style.display = 'block';
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            generateWishlistCards();
+        }
+
+        // Show main page
+        function showMainPage(e) {
+            if (e) e.preventDefault();
+            currentView = 'main';
+            mainPage.style.display = 'block';
+            wishlistPage.style.display = 'none';
+            // Refresh cards to ensure wishlist icons are up-to-date
+            generateGameCards(filteredGames, gamesGrid);
+            generateTrendingGames();
+        }
+
+        // New function to handle smooth scrolling
+        function smoothScrollTo(elementId, e) {
+            if (e) e.preventDefault();
+            const element = document.getElementById(elementId.substring(1)); // Remove '#'
+            if (element) {
+                // If on wishlist page, switch to main page first
+                if (currentView !== 'main') {
+                    showMainPage();
+                }
+                // Use a small timeout to ensure the main page is visible before scrolling
+                setTimeout(() => {
+                    element.scrollIntoView({ behavior: 'smooth' });
+                }, 100);
+            }
+        }
+
+        // Event listeners
+        closeModal.addEventListener('click', closeModalFunc);
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) closeModalFunc();
+        });
+        
+        modalWishlistBtn.addEventListener('click', () => {
+            if (currentGame) {
+                toggleWishlist(currentGame.id);
+            }
+        });
+        
+        modalPlayBtn.addEventListener('click', playGame);
+        searchInput.addEventListener('input', filterGames);
+        categories.forEach(cat => cat.addEventListener('click', filterByCategory));
+        backButton.addEventListener('click', goBack);
+        exploreButton.addEventListener('click', exploreGames);
+        wishlistLink.addEventListener('click', showWishlistPage);
+        footerWishlistLink.addEventListener('click', showWishlistPage);
+        homeLink.addEventListener('click', showMainPage);
+        footerHomeLink.addEventListener('click', showMainPage);
+        backToMainBtn.addEventListener('click', showMainPage);
+        browseGames.addEventListener('click', showMainPage);
+
+        // New event listeners for nav links
+        kategoriLink.addEventListener('click', (e) => smoothScrollTo(kategoriLink.getAttribute('href'), e));
+        trendingLink.addEventListener('click', (e) => smoothScrollTo(trendingLink.getAttribute('href'), e));
+        tentangLink.addEventListener('click', (e) => smoothScrollTo(tentangLink.getAttribute('href'), e));
+        footerKategoriLink.addEventListener('click', (e) => smoothScrollTo(footerKategoriLink.getAttribute('href'), e));
+        footerTrendingLink.addEventListener('click', (e) => smoothScrollTo(footerTrendingLink.getAttribute('href'), e));
+
+
+        // Initialize
+        generateGameCards(filteredGames, gamesGrid);
+        generateTrendingGames(); // New function call on init
+    </script>
+</body>
+</html>
