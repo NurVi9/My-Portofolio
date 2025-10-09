@@ -1,0 +1,814 @@
+{
+  "questionBank": [
+    {
+      "category": "Aritmatika",
+      "question": "Berapakah hasil dari 7 + 5?",
+      "options": ["10", "12", "13", "14"],
+      "answer": 1,
+      "fact": "Penjumlahan adalah operasi matematika dasar yang menggabungkan dua bilangan menjadi satu bilangan yang lebih besar.",
+      "difficulty": "easy",
+      "hint": "Coba hitung dengan jari atau bayangkan dalam pikiran."
+    },
+    {
+      "category": "Aritmatika",
+      "question": "Berapakah hasil dari 15 - 8?",
+      "options": ["5", "6", "7", "8"],
+      "answer": 2,
+      "fact": "Pengurangan adalah kebalikan dari penjumlahan, mengurangi nilai satu bilangan dari bilangan lainnya.",
+      "difficulty": "easy",
+      "hint": "Mulai dari 15, hitung mundur 8 langkah."
+    },
+    {
+      "category": "Aritmatika",
+      "question": "Berapakah hasil dari 6 × 4?",
+      "options": ["18", "20", "22", "24"],
+      "answer": 3,
+      "fact": "Perkalian adalah penjumlahan berulang. 6 × 4 berarti 6 + 6 + 6 + 6.",
+      "difficulty": "easy",
+      "hint": "6 + 6 = 12, 12 + 6 = 18, 18 + 6 = 24."
+    },
+    {
+      "category": "Aritmatika",
+      "question": "Berapakah hasil dari 20 ÷ 5?",
+      "options": ["3", "4", "5", "6"],
+      "answer": 1,
+      "fact": "Pembagian adalah kebalikan dari perkalian. 20 ÷ 5 berarti berapa kali 5 masuk ke dalam 20.",
+      "difficulty": "easy",
+      "hint": "5 × 4 = 20, jadi 20 ÷ 5 = 4."
+    },
+    {
+      "category": "Aritmatika",
+      "question": "Berapakah hasil dari 9 × 7?",
+      "options": ["56", "63", "64", "72"],
+      "answer": 1,
+      "fact": "Perkalian 9 memiliki pola menarik. Jumlah digit hasilnya selalu 9 (6+3=9).",
+      "difficulty": "easy",
+      "hint": "10 × 7 = 70, kurangi 7 untuk mendapatkan 63."
+    },
+    {
+      "category": "Aritmatika",
+      "question": "Berapakah hasil dari ¼ + ½?",
+      "options": ["¾", "⅔", "⅗", "⅖"],
+      "answer": 0,
+      "fact": "Untuk menjumlahkan pecahan, pastikan penyebutnya sama. ½ = 2/4, jadi ¼ + 2/4 = ¾.",
+      "difficulty": "easy",
+      "hint": "Ubah ½ menjadi 2/4, lalu jumlahkan dengan ¼."
+    },
+    {
+      "category": "Aritmatika",
+      "question": "Berapakah hasil dari 3²?",
+      "options": ["6", "9", "12", "15"],
+      "answer": 1,
+      "fact": "Pangkat dua (kuadrat) berarti mengalikan bilangan dengan dirinya sendiri. 3² = 3 × 3 = 9.",
+      "difficulty": "easy",
+      "hint": "3 × 3 = 9."
+    },
+    {
+      "category": "Aritmatika",
+      "question": "Berapakah hasil dari 0.5 × 10?",
+      "options": ["0.5", "5", "50", "500"],
+      "answer": 1,
+      "fact": "Mengalikan dengan 10 memindahkan koma desimal satu tempat ke kanan.",
+      "difficulty": "easy",
+      "hint": "0.5 × 10 = 5.0"
+    },
+    {
+      "category": "Aritmatika",
+      "question": "Berapakah hasil dari ⅔ × ¾?",
+      "options": ["½", "⅓", "⅔", "⅚"],
+      "answer": 0,
+      "fact": "Untuk mengalikan pecahan, kalikan pembilang dengan pembilang dan penyebut dengan penyebut: (2×3)/(3×4) = 6/12 = ½.",
+      "difficulty": "easy",
+      "hint": "Kalikan pembilang: 2×3=6, kalikan penyebut: 3×4=12, hasilnya 6/12 = ½."
+    },
+    {
+      "category": "Aritmatika",
+      "question": "Berapakah hasil dari 25% dari 80?",
+      "options": ["15", "20", "25", "30"],
+      "answer": 1,
+      "fact": "Persen berarti per seratus. 25% = 25/100 = 0.25. 0.25 × 80 = 20.",
+      "difficulty": "easy",
+      "hint": "25% adalah ¼, dan ¼ dari 80 adalah 20."
+    },
+    {
+      "category": "Aritmatika",
+      "question": "Berapakah hasil dari 12 + 8 - 5?",
+      "options": ["13", "14", "15", "16"],
+      "answer": 2,
+      "fact": "Dalam operasi campuran, kerjakan dari kiri ke kanan: 12 + 8 = 20, lalu 20 - 5 = 15.",
+      "difficulty": "easy",
+      "hint": "Kerjakan penjumlahan dulu, lalu pengurangan."
+    },
+    {
+      "category": "Aritmatika",
+      "question": "Berapakah hasil dari 7 × 0?",
+      "options": ["0", "7", "1", "70"],
+      "answer": 0,
+      "fact": "Setiap bilangan dikalikan dengan 0 hasilnya adalah 0.",
+      "difficulty": "easy",
+      "hint": "Ingat aturan perkalian dengan 0."
+    },
+    {
+      "category": "Aritmatika",
+      "question": "Berapakah hasil dari 18 ÷ 3?",
+      "options": ["5", "6", "7", "8"],
+      "answer": 1,
+      "fact": "Pembagian adalah kebalikan dari perkalian. 3 × 6 = 18, jadi 18 ÷ 3 = 6.",
+      "difficulty": "easy",
+      "hint": "Berapa kali 3 masuk ke dalam 18?"
+    },
+    {
+      "category": "Aritmatika",
+      "question": "Berapakah hasil dari ½ + ⅓?",
+      "options": ["⅖", "⅔", "⅚", "⅗"],
+      "answer": 2,
+      "fact": "Samakan penyebut menjadi 6: ½ = 3/6, ⅓ = 2/6. 3/6 + 2/6 = 5/6.",
+      "difficulty": "easy",
+      "hint": "Samakan penyebutnya terlebih dahulu."
+    },
+    {
+      "category": "Aritmatika",
+      "question": "Berapakah hasil dari 5² + 3?",
+      "options": ["28", "25", "20", "15"],
+      "answer": 0,
+      "fact": "5² = 25, lalu 25 + 3 = 28.",
+      "difficulty": "easy",
+      "hint": "Hitung kuadrat dulu, lalu tambahkan."
+    },
+    {
+      "category": "Aritmatika",
+      "question": "Berapakah hasil dari 100 ÷ 4?",
+      "options": ["20", "25", "30", "35"],
+      "answer": 1,
+      "fact": "Pembagian dengan 4 sama dengan membagi dua dua kali: 100 ÷ 2 = 50, 50 ÷ 2 = 25.",
+      "difficulty": "easy",
+      "hint": "4 × 25 = 100."
+    },
+    {
+      "category": "Aritmatika",
+      "question": "Berapakah hasil dari 0.75 × 100?",
+      "options": ["7.5", "75", "750", "0.075"],
+      "answer": 1,
+      "fact": "Mengalikan dengan 100 memindahkan koma desimal dua tempat ke kanan.",
+      "difficulty": "easy",
+      "hint": "0.75 × 100 = 75.0"
+    },
+    {
+      "category": "Aritmatika",
+      "question": "Berapakah hasil dari ⅝ - ¼?",
+      "options": ["⅜", "½", "⅔", "⅗"],
+      "answer": 0,
+      "fact": "Samakan penyebut menjadi 8: ⅝ - 2/8 = ⅜.",
+      "difficulty": "easy",
+      "hint": "Ubah ¼ menjadi 2/8, lalu kurangkan dari ⅝."
+    },
+    {
+      "category": "Aritmatika",
+      "question": "Berapakah hasil dari 9 × 8?",
+      "options": ["70", "72", "74", "76"],
+      "answer": 1,
+      "fact": "Perkalian 9 memiliki pola: hasil perkalian 9 dengan angka 1-10, jumlah digitnya selalu 9 (7+2=9).",
+      "difficulty": "easy",
+      "hint": "10 × 8 = 80, kurangi 8 untuk mendapatkan 72."
+    },
+    {
+      "category": "Aritmatika",
+      "question": "Berapakah hasil dari 15% dari 200?",
+      "options": ["15", "25", "30", "35"],
+      "answer": 2,
+      "fact": "15% = 15/100 = 0.15. 0.15 × 200 = 30.",
+      "difficulty": "easy",
+      "hint": "10% dari 200 adalah 20, 5% adalah 10, jadi 15% adalah 30."
+    },
+    {
+      "category": "Aljabar",
+      "question": "Jika x = 5, berapakah nilai dari 2x + 3?",
+      "options": ["10", "13", "15", "18"],
+      "answer": 1,
+      "fact": "Dalam aljabar, kita mengganti variabel dengan nilai yang diberikan: 2(5) + 3 = 10 + 3 = 13.",
+      "difficulty": "medium",
+      "hint": "Ganti x dengan 5, lalu hitung 2 × 5 + 3."
+    },
+    {
+      "category": "Geometri",
+      "question": "Berapakah luas persegi dengan sisi 6 cm?",
+      "options": ["24 cm²", "30 cm²", "36 cm²", "42 cm²"],
+      "answer": 2,
+      "fact": "Luas persegi = sisi × sisi = 6 × 6 = 36 cm².",
+      "difficulty": "medium",
+      "hint": "Rumus luas persegi adalah sisi × sisi."
+    },
+    {
+      "category": "Aljabar",
+      "question": "Jika y = 3, berapakah nilai dari y² + 2y - 1?",
+      "options": ["10", "12", "14", "16"],
+      "answer": 2,
+      "fact": "Ganti y dengan 3: (3)² + 2(3) - 1 = 9 + 6 - 1 = 14.",
+      "difficulty": "medium",
+      "hint": "Hitung kuadrat dulu, lalu perkalian, terakhir penjumlahan dan pengurangan."
+    },
+    {
+      "category": "Geometri",
+      "question": "Berapakah keliling lingkaran dengan jari-jari 7 cm? (Gunakan π = 22/7)",
+      "options": ["22 cm", "36 cm", "44 cm", "50 cm"],
+      "answer": 2,
+      "fact": "Keliling lingkaran = 2πr = 2 × 22/7 × 7 = 2 × 22 = 44 cm.",
+      "difficulty": "medium",
+      "hint": "Rumus keliling lingkaran adalah 2 × π × jari-jari."
+    },
+    {
+      "category": "Aljabar",
+      "question": "Selesaikan persamaan: 2x - 5 = 11",
+      "options": ["x = 6", "x = 7", "x = 8", "x = 9"],
+      "answer": 2,
+      "fact": "2x - 5 = 11 → 2x = 16 → x = 8.",
+      "difficulty": "medium",
+      "hint": "Pindahkan -5 ke ruas kanan menjadi +5, lalu bagi kedua sisi dengan 2."
+    },
+    {
+      "category": "Geometri",
+      "question": "Berapakah volume kubus dengan sisi 4 cm?",
+      "options": ["16 cm³", "32 cm³", "48 cm³", "64 cm³"],
+      "answer": 3,
+      "fact": "Volume kubus = sisi × sisi × sisi = 4 × 4 × 4 = 64 cm³.",
+      "difficulty": "medium",
+      "hint": "Rumus volume kubus adalah sisi pangkat 3."
+    },
+    {
+      "category": "Aljabar",
+      "question": "Faktorisasi dari x² + 5x + 6 adalah...",
+      "options": ["(x+2)(x+3)", "(x+1)(x+6)", "(x+2)(x+4)", "(x+3)(x+3)"],
+      "answer": 0,
+      "fact": "x² + 5x + 6 = (x+2)(x+3) karena 2+3=5 dan 2×3=6.",
+      "difficulty": "medium",
+      "hint": "Cari dua bilangan yang jumlahnya 5 dan hasil kalinya 6."
+    },
+    {
+      "category": "Geometri",
+      "question": "Segitiga dengan panjang sisi 3 cm, 4 cm, dan 5 cm adalah segitiga...",
+      "options": ["Sama sisi", "Sama kaki", "Siku-siku", "Tumpul"],
+      "answer": 2,
+      "fact": "3² + 4² = 9 + 16 = 25 = 5², jadi memenuhi teorema Pythagoras untuk segitiga siku-siku.",
+      "difficulty": "medium",
+      "hint": "Periksa apakah memenuhi teorema Pythagoras: a² + b² = c²."
+    },
+    {
+      "category": "Aljabar",
+      "question": "Selesaikan: 3(x + 2) = 21",
+      "options": ["x = 3", "x = 5", "x = 6", "x = 7"],
+      "answer": 1,
+      "fact": "3(x + 2) = 21 → x + 2 = 7 → x = 5.",
+      "difficulty": "medium",
+      "hint": "Bagi kedua sisi dengan 3 terlebih dahulu."
+    },
+    {
+      "category": "Geometri",
+      "question": "Berapakah luas segitiga dengan alas 10 cm dan tinggi 8 cm?",
+      "options": ["30 cm²", "40 cm²", "50 cm²", "60 cm²"],
+      "answer": 1,
+      "fact": "Luas segitiga = ½ × alas × tinggi = ½ × 10 × 8 = 40 cm².",
+      "difficulty": "medium",
+      "hint": "Rumus luas segitiga adalah ½ × alas × tinggi."
+    },
+    {
+      "category": "Aljabar",
+      "question": "Jika a = 4 dan b = 3, berapakah nilai dari 2a² - b?",
+      "options": ["26", "29", "32", "35"],
+      "answer": 1,
+      "fact": "2(4)² - 3 = 2(16) - 3 = 32 - 3 = 29.",
+      "difficulty": "medium",
+      "hint": "Hitung kuadrat dulu, lalu perkalian, terakhir pengurangan."
+    },
+    {
+      "category": "Geometri",
+      "question": "Berapakah volume balok dengan panjang 6 cm, lebar 4 cm, dan tinggi 5 cm?",
+      "options": ["100 cm³", "110 cm³", "120 cm³", "130 cm³"],
+      "answer": 2,
+      "fact": "Volume balok = panjang × lebar × tinggi = 6 × 4 × 5 = 120 cm³.",
+      "difficulty": "medium",
+      "hint": "Kalikan ketiga dimensi: panjang × lebar × tinggi."
+    },
+    {
+      "category": "Aljabar",
+      "question": "Sederhanakan: 2x + 3y - x + 2y",
+      "options": ["x + 5y", "3x + 5y", "x + y", "3x + y"],
+      "answer": 0,
+      "fact": "Kelompokkan suku sejenis: (2x - x) + (3y + 2y) = x + 5y.",
+      "difficulty": "medium",
+      "hint": "Kelompokkan dan jumlahkan koefisien variabel yang sama."
+    },
+    {
+      "category": "Geometri",
+      "question": "Sudut yang besarnya 90° disebut sudut...",
+      "options": ["Lancip", "Siku-siku", "Tumpul", "Refleks"],
+      "answer": 1,
+      "fact": "Sudut siku-siku besarnya tepat 90°, seperti sudut pada persegi.",
+      "difficulty": "medium",
+      "hint": "Sudut ini membentuk bentuk L."
+    },
+    {
+      "category": "Aljabar",
+      "question": "Berapakah hasil dari (x + 3)(x - 2)?",
+      "options": ["x² + x - 6", "x² + 5x - 6", "x² - x - 6", "x² - 5x - 6"],
+      "answer": 0,
+      "fact": "(x + 3)(x - 2) = x² - 2x + 3x - 6 = x² + x - 6.",
+      "difficulty": "medium",
+      "hint": "Gunakan metode FOIL (First, Outer, Inner, Last)."
+    },
+    {
+      "category": "Geometri",
+      "question": "Berapakah luas permukaan kubus dengan sisi 5 cm?",
+      "options": ["125 cm²", "135 cm²", "150 cm²", "175 cm²"],
+      "answer": 2,
+      "fact": "Luas permukaan kubus = 6 × sisi² = 6 × 25 = 150 cm².",
+      "difficulty": "medium",
+      "hint": "Kubus memiliki 6 sisi, setiap sisi adalah persegi."
+    },
+    {
+      "category": "Aljabar",
+      "question": "Jika 4x - 7 = 13, maka x = ?",
+      "options": ["4", "5", "6", "7"],
+      "answer": 1,
+      "fact": "4x - 7 = 13 → 4x = 20 → x = 5.",
+      "difficulty": "medium",
+      "hint": "Pindahkan -7 ke ruas kanan menjadi +7, lalu bagi dengan 4."
+    },
+    {
+      "category": "Geometri",
+      "question": "Jari-jari lingkaran adalah 10 cm. Berapakah diameternya?",
+      "options": ["5 cm", "10 cm", "15 cm", "20 cm"],
+      "answer": 3,
+      "fact": "Diameter = 2 × jari-jari = 2 × 10 = 20 cm.",
+      "difficulty": "medium",
+      "hint": "Diameter adalah dua kali jari-jari."
+    },
+    {
+      "category": "Aljabar",
+      "question": "Selesaikan: 2(x - 3) + 4 = 12",
+      "options": ["x = 5", "x = 6", "x = 7", "x = 8"],
+      "answer": 2,
+      "fact": "2(x - 3) + 4 = 12 → 2x - 6 + 4 = 12 → 2x - 2 = 12 → 2x = 14 → x = 7.",
+      "difficulty": "medium",
+      "hint": "Distribusikan 2 ke dalam kurung, lalu selesaikan persamaan."
+    },
+    {
+      "category": "Geometri",
+      "question": "Berapakah keliling persegi panjang dengan panjang 8 cm dan lebar 5 cm?",
+      "options": ["26 cm", "28 cm", "30 cm", "32 cm"],
+      "answer": 0,
+      "fact": "Keliling persegi panjang = 2 × (panjang + lebar) = 2 × (8 + 5) = 2 × 13 = 26 cm.",
+      "difficulty": "medium",
+      "hint": "Rumus keliling persegi panjang adalah 2 × (panjang + lebar)."
+    },
+    {
+      "category": "Trigonometri",
+      "question": "Berapakah nilai dari sin(30°)?",
+      "options": ["0", "½", "√2/2", "√3/2"],
+      "answer": 1,
+      "fact": "Sin(30°) = ½. Ini adalah nilai trigonometri dasar yang penting untuk diingat.",
+      "difficulty": "hard",
+      "hint": "Ingat nilai trigonometri untuk sudut istimewa 30°, 45°, dan 60°."
+    },
+    {
+      "category": "Kalkulus",
+      "question": "Turunan dari f(x) = x³ adalah...",
+      "options": ["3x", "3x²", "3x³", "x⁴/4"],
+      "answer": 1,
+      "fact": "Aturan pangkat: turunan dari xⁿ adalah n·xⁿ⁻¹. Jadi turunan x³ adalah 3x².",
+      "difficulty": "hard",
+      "hint": "Gunakan aturan pangkat: turunan xⁿ adalah n·xⁿ⁻¹."
+    },
+    {
+      "category": "Trigonometri",
+      "question": "Berapakah nilai dari cos(60°)?",
+      "options": ["0", "½", "√2/2", "√3/2"],
+      "answer": 1,
+      "fact": "Cos(60°) = ½. Nilai ini berasal dari segitiga sama sisi yang dibagi dua.",
+      "difficulty": "hard",
+      "hint": "Ingat nilai cosinus untuk sudut 60°."
+    },
+    {
+      "category": "Kalkulus",
+      "question": "Integral dari 2x dx adalah...",
+      "options": ["x²", "x² + C", "2x²", "2x² + C"],
+      "answer": 1,
+      "fact": "Integral dari 2x adalah x² + C, dimana C adalah konstanta integrasi.",
+      "difficulty": "hard",
+      "hint": "Integral adalah kebalikan dari turunan. Integral xⁿ adalah xⁿ⁺¹/(n+1) + C."
+    },
+    {
+      "category": "Trigonometri",
+      "question": "Berapakah nilai dari tan(45°)?",
+      "options": ["0", "1", "√2", "√3"],
+      "answer": 1,
+      "fact": "Tan(45°) = 1. Tangen adalah perbandingan sisi depan dengan sisi samping, yang pada sudut 45° adalah sama.",
+      "difficulty": "hard",
+      "hint": "Pada sudut 45°, sisi depan dan sisi samping sama panjang."
+    },
+    {
+      "category": "Kalkulus",
+      "question": "Turunan dari f(x) = sin(x) adalah...",
+      "options": ["cos(x)", "-cos(x)", "-sin(x)", "tan(x)"],
+      "answer": 0,
+      "fact": "Turunan dari sin(x) adalah cos(x). Ini adalah salah satu turunan dasar dalam kalkulus.",
+      "difficulty": "hard",
+      "hint": "Ingat turunan fungsi trigonometri: turunan sin(x) adalah cos(x)."
+    },
+    {
+      "category": "Trigonometri",
+      "question": "Berapakah nilai dari sin(90°)?",
+      "options": ["0", "½", "1", "Tidak terdefinisi"],
+      "answer": 2,
+      "fact": "Sin(90°) = 1. Pada sudut 90°, sisi depan sama dengan sisi miring, sehingga sin(90°) = 1.",
+      "difficulty": "hard",
+      "hint": "Pada sudut 90°, sisi depan sama dengan sisi miring."
+    },
+    {
+      "category": "Kalkulus",
+      "question": "Integral dari 3x² dx adalah...",
+      "options": ["x³", "x³ + C", "3x³", "3x³ + C"],
+      "answer": 1,
+      "fact": "Integral dari 3x² adalah x³ + C. Aturan pangkat: integral xⁿ dx = xⁿ⁺¹/(n+1) + C.",
+      "difficulty": "hard",
+      "hint": "Gunakan aturan pangkat untuk integral."
+    },
+    {
+      "category": "Trigonometri",
+      "question": "Identitas trigonometri: sin²θ + cos²θ = ?",
+      "options": ["0", "1", "tanθ", "sin2θ"],
+      "answer": 1,
+      "fact": "Identitas Pythagoras dalam trigonometri: sin²θ + cos²θ = 1 untuk semua nilai θ.",
+      "difficulty": "hard",
+      "hint": "Ini adalah identitas trigonometri paling dasar yang harus diingat."
+    },
+    {
+      "category": "Kalkulus",
+      "question": "Turunan dari f(x) = eˣ adalah...",
+      "options": ["eˣ", "xeˣ", "eˣ/x", "ln(x)"],
+      "answer": 0,
+      "fact": "Turunan dari eˣ adalah eˣ. Fungsi eksponensial eˣ adalah unik karena turunannya adalah dirinya sendiri.",
+      "difficulty": "hard",
+      "hint": "Fungsi eksponensial eˣ adalah fungsi yang turunannya sama dengan fungsi itu sendiri."
+    },
+    {
+      "category": "Trigonometri",
+      "question": "Berapakah nilai dari cos(90°)?",
+      "options": ["0", "½", "1", "Tidak terdefinisi"],
+      "answer": 0,
+      "fact": "Cos(90°) = 0. Pada sudut 90°, sisi samping sama dengan 0, sehingga cos(90°) = 0.",
+      "difficulty": "hard",
+      "hint": "Pada sudut 90°, tidak ada sisi samping (alas)."
+    },
+    {
+      "category": "Kalkulus",
+      "question": "Integral dari 1/x dx adalah...",
+      "options": ["x", "1/x²", "ln|x|", "ln|x| + C"],
+      "answer": 3,
+      "fact": "Integral dari 1/x dx adalah ln|x| + C. Ini adalah integral penting dalam kalkulus.",
+      "difficulty": "hard",
+      "hint": "Ingat bahwa turunan dari ln|x| adalah 1/x."
+    },
+    {
+      "category": "Trigonometri",
+      "question": "Rumus untuk cos(2θ) adalah...",
+      "options": ["cos²θ - sin²θ", "2sinθcosθ", "sin²θ - cos²θ", "1 - 2sin²θ"],
+      "answer": 0,
+      "fact": "Cos(2θ) = cos²θ - sin²θ. Ini adalah salah satu identitas sudut ganda dalam trigonometri.",
+      "difficulty": "hard",
+      "hint": "Ini adalah identitas sudut ganda untuk cosinus."
+    },
+    {
+      "category": "Kalkulus",
+      "question": "Turunan dari ln(x) adalah...",
+      "options": ["1/x", "x", "eˣ", "1/x²"],
+      "answer": 0,
+      "fact": "Turunan dari ln(x) adalah 1/x. Ini adalah turunan dasar fungsi logaritma natural.",
+      "difficulty": "hard",
+      "hint": "Turunan logaritma natural ln(x) adalah 1/x."
+    },
+    {
+      "category": "Trigonometri",
+      "question": "Berapakah nilai dari sec(0°)?",
+      "options": ["0", "1", "Tidak terdefinisi", "∞"],
+      "answer": 1,
+      "fact": "Sec(0°) = 1/cos(0°) = 1/1 = 1. Secan adalah kebalikan dari cosinus.",
+      "difficulty": "hard",
+      "hint": "Sec(θ) = 1/cos(θ). Cari cos(0°) terlebih dahulu."
+    },
+    {
+      "category": "Kalkulus",
+      "question": "Integral dari cos(x) dx adalah...",
+      "options": ["sin(x)", "sin(x) + C", "-sin(x)", "-sin(x) + C"],
+      "answer": 1,
+      "fact": "Integral dari cos(x) dx adalah sin(x) + C. Ini adalah integral dasar fungsi trigonometri.",
+      "difficulty": "hard",
+      "hint": "Ingat bahwa turunan dari sin(x) adalah cos(x)."
+    },
+    {
+      "category": "Trigonometri",
+      "question": "Rumus untuk sin(2θ) adalah...",
+      "options": ["2sinθcosθ", "sin²θ - cos²θ", "1 - 2sin²θ", "2cos²θ - 1"],
+      "answer": 0,
+      "fact": "Sin(2θ) = 2sinθcosθ. Ini adalah identitas sudut ganda untuk sinus.",
+      "difficulty": "hard",
+      "hint": "Ini adalah identitas sudut ganda untuk sinus."
+    },
+    {
+      "category": "Kalkulus",
+      "question": "Turunan dari f(x) = x·eˣ adalah...",
+      "options": ["eˣ", "xeˣ", "eˣ(x + 1)", "eˣ(x - 1)"],
+      "answer": 2,
+      "fact": "Menggunakan aturan perkalian: turunan dari x·eˣ adalah 1·eˣ + x·eˣ = eˣ(1 + x).",
+      "difficulty": "hard",
+      "hint": "Gunakan aturan perkalian: (uv)' = u'v + uv'."
+    },
+    {
+      "category": "Trigonometri",
+      "question": "Berapakah nilai dari cot(45°)?",
+      "options": ["0", "1", "√2", "√3"],
+      "answer": 1,
+      "fact": "Cot(45°) = 1/tan(45°) = 1/1 = 1. Cotangen adalah kebalikan dari tangen.",
+      "difficulty": "hard",
+      "hint": "Cot(θ) = 1/tan(θ). Cari tan(45°) terlebih dahulu."
+    },
+    {
+      "category": "Kalkulus",
+      "question": "Integral dari ∫(3x² + 2x) dx adalah...",
+      "options": ["x³ + x²", "x³ + x² + C", "6x + 2", "6x + 2 + C"],
+      "answer": 1,
+      "fact": "∫(3x² + 2x) dx = x³ + x² + C. Integral jumlah adalah jumlah integral, dan gunakan aturan pangkat.",
+      "difficulty": "hard",
+      "hint": "Integral dari xⁿ adalah xⁿ⁺¹/(n+1) + C. Terapkan pada setiap suku."
+    },
+    {
+        "category": "Aritmatika",
+        "question": "Angka romawi untuk 10 adalah...",
+        "options": ["V", "X", "L", "C"],
+        "answer": 1,
+        "fact": "Sistem angka Romawi menggunakan huruf dari abjad Latin untuk melambangkan nilai numerik.",
+        "difficulty": "easy",
+        "hint": "Ini adalah salah satu angka Romawi yang paling umum."
+    },
+    {
+        "category": "Geometri",
+        "question": "Berapa banyak sisi yang dimiliki sebuah segienam (heksagon)?",
+        "options": ["5", "6", "7", "8"],
+        "answer": 1,
+        "fact": "Heksagon adalah poligon dengan enam sisi dan enam sudut.",
+        "difficulty": "easy",
+        "hint": "'Hexa' adalah awalan Yunani untuk angka enam."
+    },
+    {
+        "category": "Aritmatika",
+        "question": "Berapakah 50% dari 50?",
+        "options": ["20", "25", "30", "35"],
+        "answer": 1,
+        "fact": "50% berarti setengah dari suatu nilai.",
+        "difficulty": "easy",
+        "hint": "Setengah dari 50 adalah..."
+    },
+    {
+        "category": "Aritmatika",
+        "question": "Manakah dari berikut ini yang merupakan bilangan prima?",
+        "options": ["4", "6", "7", "9"],
+        "answer": 2,
+        "fact": "Bilangan prima adalah bilangan yang hanya bisa dibagi oleh 1 dan dirinya sendiri.",
+        "difficulty": "easy",
+        "hint": "Periksa setiap angka apakah memiliki pembagi selain 1 dan dirinya sendiri."
+    },
+    {
+        "category": "Aritmatika",
+        "question": "Berapakah akar kuadrat dari 49?",
+        "options": ["6", "7", "8", "9"],
+        "answer": 1,
+        "fact": "Akar kuadrat dari sebuah angka adalah nilai yang jika dikalikan dengan dirinya sendiri akan menghasilkan angka tersebut.",
+        "difficulty": "easy",
+        "hint": "Angka berapa yang jika dikalikan dengan dirinya sendiri hasilnya 49?"
+    },
+    {
+        "category": "Geometri",
+        "question": "Bentuk apa yang memiliki 3 sisi?",
+        "options": ["Persegi", "Lingkaran", "Segitiga", "Persegi panjang"],
+        "answer": 2,
+        "fact": "Segitiga adalah poligon dengan tiga sisi dan tiga sudut.",
+        "difficulty": "easy",
+        "hint": "'Tri' berarti tiga."
+    },
+    {
+        "category": "Aritmatika",
+        "question": "Berapakah 100 - 35?",
+        "options": ["55", "60", "65", "70"],
+        "answer": 2,
+        "fact": "Pengurangan adalah salah satu dari empat operasi aritmatika dasar.",
+        "difficulty": "easy",
+        "hint": "100 - 30 adalah 70, lalu kurangi 5 lagi."
+    },
+    {
+        "category": "Aritmatika",
+        "question": "Urutkan dari yang terkecil: 0.5, 0.05, 5.0",
+        "options": ["0.5, 0.05, 5.0", "5.0, 0.5, 0.05", "0.05, 0.5, 5.0", "0.05, 5.0, 0.5"],
+        "answer": 2,
+        "fact": "Saat membandingkan desimal, lihatlah nilai tempat dari kiri ke kanan.",
+        "difficulty": "easy",
+        "hint": "Semakin banyak angka nol setelah koma, semakin kecil nilainya."
+    },
+    {
+        "category": "Aritmatika",
+        "question": "Berapa jam dalam sehari?",
+        "options": ["12", "24", "36", "48"],
+        "answer": 1,
+        "fact": "Satu hari didefinisikan sebagai waktu yang dibutuhkan Bumi untuk berotasi satu kali pada porosnya.",
+        "difficulty": "easy",
+        "hint": "Pikirkan tentang jam analog yang berputar dua kali sehari."
+    },
+    {
+        "category": "Geometri",
+        "question": "Berapa jumlah sudut dalam sebuah persegi?",
+        "options": ["90°", "180°", "270°", "360°"],
+        "answer": 3,
+        "fact": "Setiap sudut dalam persegi adalah sudut siku-siku (90°), dan ada empat sudut. 4 x 90° = 360°.",
+        "difficulty": "easy",
+        "hint": "Persegi memiliki empat sudut siku-siku."
+    },
+    {
+        "category": "Aljabar",
+        "question": "Selesaikan untuk y: y + 10 = 25",
+        "options": ["y = 5", "y = 10", "y = 15", "y = 20"],
+        "answer": 2,
+        "fact": "Untuk menyelesaikan persamaan, lakukan operasi kebalikan pada kedua sisi untuk mengisolasi variabel.",
+        "difficulty": "medium",
+        "hint": "Kurangi 10 dari kedua sisi persamaan."
+    },
+    {
+        "category": "Statistika",
+        "question": "Berapakah rata-rata dari 2, 4, dan 6?",
+        "options": ["2", "3", "4", "5"],
+        "answer": 2,
+        "fact": "Rata-rata dihitung dengan menjumlahkan semua nilai dan membaginya dengan jumlah nilai tersebut.",
+        "difficulty": "medium",
+        "hint": "Jumlahkan angkanya (2+4+6) lalu bagi dengan 3."
+    },
+    {
+        "category": "Geometri",
+        "question": "Berapakah luas lingkaran dengan jari-jari 5 cm? (Gunakan π = 3.14)",
+        "options": ["15.7 cm²", "31.4 cm²", "78.5 cm²", "157 cm²"],
+        "answer": 2,
+        "fact": "Luas lingkaran dihitung dengan rumus πr².",
+        "difficulty": "medium",
+        "hint": "Hitung 3.14 dikalikan dengan 5 kuadrat (25)."
+    },
+    {
+        "category": "Aljabar",
+        "question": "Jika 3a - 4 = 11, maka a = ?",
+        "options": ["3", "4", "5", "6"],
+        "answer": 2,
+        "fact": "Aljabar adalah studi tentang simbol matematika dan aturan untuk memanipulasi simbol-simbol tersebut.",
+        "difficulty": "medium",
+        "hint": "Tambahkan 4 ke kedua sisi, lalu bagi dengan 3."
+    },
+    {
+        "category": "Statistika",
+        "question": "Berapakah median dari kumpulan data: 1, 5, 2, 8, 3?",
+        "options": ["1", "2", "3", "5"],
+        "answer": 2,
+        "fact": "Median adalah nilai tengah dalam kumpulan data yang telah diurutkan.",
+        "difficulty": "medium",
+        "hint": "Urutkan angkanya terlebih dahulu (1, 2, 3, 5, 8) dan temukan yang di tengah."
+    },
+    {
+        "category": "Geometri",
+        "question": "Sebuah segitiga memiliki sudut 40° dan 60°. Berapakah besar sudut ketiga?",
+        "options": ["60°", "70°", "80°", "90°"],
+        "answer": 2,
+        "fact": "Jumlah total sudut dalam segitiga selalu 180°.",
+        "difficulty": "medium",
+        "hint": "180 - (40 + 60) = ?"
+    },
+    {
+        "category": "Aljabar",
+        "question": "Sederhanakan ekspresi: 4(a + 2b) - 2a",
+        "options": ["2a + 8b", "2a + 2b", "6a + 8b", "4a + 8b"],
+        "answer": 0,
+        "fact": "Gunakan sifat distributif untuk mengalikan 4 dengan setiap suku di dalam kurung.",
+        "difficulty": "medium",
+        "hint": "4a + 8b - 2a = ?"
+    },
+    {
+        "category": "Peluang",
+        "question": "Berapa peluang mendapatkan angka ganjil saat melempar satu dadu?",
+        "options": ["1/6", "1/3", "1/2", "2/3"],
+        "answer": 2,
+        "fact": "Peluang dihitung sebagai jumlah hasil yang diinginkan dibagi dengan jumlah total hasil yang mungkin.",
+        "difficulty": "medium",
+        "hint": "Ada 3 angka ganjil (1, 3, 5) dari 6 kemungkinan hasil."
+    },
+    {
+        "category": "Aljabar",
+        "question": "Berapakah nilai dari 5! (5 faktorial)?",
+        "options": ["25", "60", "120", "720"],
+        "answer": 2,
+        "fact": "Faktorial dari sebuah bilangan adalah hasil perkalian bilangan tersebut dengan semua bilangan bulat positif yang lebih kecil darinya.",
+        "difficulty": "medium",
+        "hint": "5! = 5 × 4 × 3 × 2 × 1"
+    },
+    {
+        "category": "Geometri",
+        "question": "Keliling sebuah persegi adalah 24 cm. Berapakah panjang sisinya?",
+        "options": ["4 cm", "5 cm", "6 cm", "8 cm"],
+        "answer": 2,
+        "fact": "Keliling persegi adalah jumlah dari keempat sisinya, atau 4 dikali panjang sisi.",
+        "difficulty": "medium",
+        "hint": "Bagi keliling (24 cm) dengan 4."
+    },
+    {
+        "category": "Logaritma",
+        "question": "Berapakah nilai dari log₁₀(100)?",
+        "options": ["1", "2", "10", "100"],
+        "answer": 1,
+        "fact": "Logaritma adalah kebalikan dari eksponensial. logₐ(b) = c berarti aᶜ = b.",
+        "difficulty": "hard",
+        "hint": "10 pangkat berapa yang hasilnya 100?"
+    },
+    {
+        "category": "Aljabar",
+        "question": "Selesaikan sistem persamaan: x + y = 8 dan x - y = 2. Berapakah nilai x?",
+        "options": ["3", "4", "5", "6"],
+        "answer": 2,
+        "fact": "Sistem persamaan dapat diselesaikan dengan metode substitusi atau eliminasi.",
+        "difficulty": "hard",
+        "hint": "Tambahkan kedua persamaan untuk mengeliminasi y: (x+y) + (x-y) = 8 + 2."
+    },
+    {
+        "category": "Kalkulus",
+        "question": "Berapakah limit dari f(x) = 2x + 1 saat x mendekati 3?",
+        "options": ["5", "6", "7", "8"],
+        "answer": 2,
+        "fact": "Untuk fungsi kontinu, limit dapat ditemukan dengan mensubstitusikan nilai yang didekati oleh x.",
+        "difficulty": "hard",
+        "hint": "Ganti x dengan 3 dalam ekspresi 2x + 1."
+    },
+    {
+        "category": "Trigonometri",
+        "question": "Jika sin(θ) = 3/5 dan θ adalah sudut lancip, berapakah cos(θ)?",
+        "options": ["3/4", "4/5", "5/4", "5/3"],
+        "answer": 1,
+        "fact": "Menggunakan identitas sin²(θ) + cos²(θ) = 1, kita dapat menemukan nilai fungsi trigonometri lainnya.",
+        "difficulty": "hard",
+        "hint": "Gambarkan segitiga siku-siku dengan sisi depan 3 dan sisi miring 5. Gunakan Pythagoras untuk mencari sisi samping."
+    },
+    {
+        "category": "Aljabar",
+        "question": "Berapakah akar-akar dari persamaan kuadrat x² - 5x + 6 = 0?",
+        "options": ["1 dan 6", "2 dan 3", "-1 dan -6", "-2 dan -3"],
+        "answer": 1,
+        "fact": "Akar-akar persamaan kuadrat dapat ditemukan dengan pemfaktoran, melengkapkan kuadrat, atau rumus ABC.",
+        "difficulty": "hard",
+        "hint": "Faktorkan persamaan menjadi (x - a)(x - b) = 0."
+    },
+    {
+        "category": "Kalkulus",
+        "question": "Turunan kedua dari f(x) = 4x³ adalah...",
+        "options": ["12x²", "24x", "12", "24"],
+        "answer": 1,
+        "fact": "Turunan kedua adalah turunan dari turunan pertama.",
+        "difficulty": "hard",
+        "hint": "Turunan pertama adalah 12x². Turunkan lagi."
+    },
+    {
+        "category": "Barisan & Deret",
+        "question": "Berapakah suku ke-10 dari barisan aritmatika 2, 5, 8, ...?",
+        "options": ["27", "29", "31", "33"],
+        "answer": 1,
+        "fact": "Rumus suku ke-n barisan aritmatika adalah Uₙ = a + (n-1)d.",
+        "difficulty": "hard",
+        "hint": "Suku pertama (a) adalah 2 dan beda (d) adalah 3. Cari U₁₀."
+    },
+    {
+        "category": "Logaritma",
+        "question": "Sederhanakan: log(2) + log(5)",
+        "options": ["log(7)", "log(10)", "log(2.5)", "log(3)"],
+        "answer": 1,
+        "fact": "Salah satu sifat logaritma adalah log(a) + log(b) = log(a × b).",
+        "difficulty": "hard",
+        "hint": "Gunakan sifat penjumlahan logaritma."
+    },
+    {
+        "category": "Trigonometri",
+        "question": "Berapakah periode dari fungsi y = sin(2x)?",
+        "options": ["π/2", "π", "2π", "4π"],
+        "answer": 1,
+        "fact": "Periode dari fungsi y = a sin(bx) adalah 2π / |b|.",
+        "difficulty": "hard",
+        "hint": "Periode normal sinus adalah 2π. Bagi dengan koefisien x."
+    },
+    {
+        "category": "Kalkulus",
+        "question": "Integral dari e²ˣ dx adalah...",
+        "options": ["e²ˣ + C", "2e²ˣ + C", "½e²ˣ + C", "eˣ² + C"],
+        "answer": 2,
+        "fact": "Integral dari eᵃˣ dx adalah (1/a)eᵃˣ + C.",
+        "difficulty": "hard",
+        "hint": "Gunakan aturan rantai terbalik untuk integral."
+    }
+  ]
+}
