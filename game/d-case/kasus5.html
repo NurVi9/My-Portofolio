@@ -1,0 +1,1315 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Misteri Pencurian di Museum Seni - Game Detektif</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --dark-bg: #1a1a2e;
+            --light-bg: #16213e;
+            --accent: #4cc9f0;
+            --text: #f1f1f1;
+            --paper: #f0e6d2;
+            --highlight: #ffd166;
+            --success: #4caf50;
+            --danger: #f44336;
+            --warning: #ff9800;
+        }
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--dark-bg);
+            color: var(--text);
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI1MCIgaGVpZ2h0PSI1MCIgb3BhY2l0eT0iMC4wNSI+PHBhdGggZD0iTTAgMGg1MHY1MEgweiIgZmlsbD0ibm9uZSIvPjxwYXRoIGQ9Ik0xMCAxMGg0TTEwIDE1aDRNMTAgMjBoNE0xMCAyNmg0TTEwIDMxaDRNMTAgMzZoNE0xMCA0MWg0TTI2IDEwaDRNMjYgMTVoNE0yNiAyMGg0TTI2IDI2aDRNMjYgMzFoNE0yNiAzNmg0TTI2IDQxaDRNNDIgMTBoNE00MiAxNWg0TTQyIDIwaDQ0NDIgMjZoNE00MiAzMWg0TTQyIDM2aDRNNDIgNDFoNCIgc3Ryb2tlPSIjZmZmIiBzdHJva2Utd2lkdGg9IjEiLz48L3N2Zz4=');
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            text-align: center;
+            border-bottom: 2px solid var(--accent);
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+            position: relative;
+        }
+        
+        h1 {
+            color: var(--accent);
+            font-size: 2.8rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            margin-bottom: 10px;
+            font-family: 'Courier New', monospace;
+        }
+        
+        .subtitle {
+            font-style: italic;
+            color: var(--highlight);
+            margin-bottom: 20px;
+        }
+        
+        .game-screen {
+            display: none;
+            background-color: var(--light-bg);
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+            margin-bottom: 20px;
+            border: 1px solid rgba(76, 201, 240, 0.3);
+            animation: fadeIn 0.5s ease;
+        }
+        
+        #welcome-screen {
+            display: block;
+            text-align: center;
+            background: linear-gradient(to bottom, rgba(22, 33, 62, 0.9), rgba(26, 26, 46, 0.9));
+            position: relative;
+            overflow: hidden;
+            padding: 40px;
+        }
+        
+        #welcome-screen::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2MCIgaGVpZ2h0PSI2MCIgb3BhY2l0eT0iMC4wNSI+PHBhdGggZD0iTTAgMGg2MHY2MEgweiIgZmlsbD0ibm9uZSIvPjxyZWN0IHg9IjEwIiB5PSIxMCIgd2lkdGg9IjQwIiBoZWlnaHQ9IjQwIiBzdHJva2U9IiM0Y2M5ZjAiIHN0cm9rZS13aWR0aD0iMC41IiBmaWxsPSJub25lIi8+PGNpcmNsZSBjeD0iMzAiIGN5PSIzMCIgcj0iMTAiIHN0cm9rZT0iIzRjYzlmMCIgc3Ryb2tlLXdpZHRoPSIwLjUiIGZpbGw9Im5vbmUiLz48L3N2Zz4=');
+            z-index: -1;
+        }
+        
+        .btn {
+            background: linear-gradient(to bottom, var(--accent), #3a9fc9);
+            color: var(--text);
+            border: none;
+            padding: 14px 28px;
+            margin: 12px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-family: inherit;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .btn i {
+            margin-right: 8px;
+        }
+        
+        .btn::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, #3a9fc9, var(--accent));
+            opacity: 0;
+            transition: opacity 0.3s;
+            z-index: -1;
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+        }
+        
+        .btn:hover::before {
+            opacity: 1;
+        }
+        
+        .btn:active {
+            transform: translateY(1px);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+        
+        .btn-secondary {
+            background: linear-gradient(to bottom, #6c757d, #5a6268);
+        }
+        
+        .btn-success {
+            background: linear-gradient(to bottom, var(--success), #3d8b40);
+        }
+        
+        .btn-danger {
+            background: linear-gradient(to bottom, var(--danger), #d32f2f);
+        }
+        
+        .note-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin: 20px 0;
+            gap: 15px;
+        }
+        
+        .note {
+            background-color: var(--paper);
+            color: #333;
+            padding: 18px;
+            border-radius: 8px;
+            width: 220px;
+            min-height: 120px;
+            box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2);
+            transform: rotate(-1deg);
+            cursor: pointer;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .note::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(to right, var(--accent), transparent);
+        }
+        
+        .note:hover {
+            transform: rotate(0deg) scale(1.05);
+            box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        .note h3 {
+            color: #2c3e50;
+            margin-bottom: 8px;
+            border-bottom: 1px dashed #aaa;
+            padding-bottom: 5px;
+        }
+        
+        .note p {
+            font-size: 0.9rem;
+            flex-grow: 1;
+        }
+        
+        .character-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 25px 0;
+        }
+        
+        .character {
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            padding: 15px;
+            position: relative;
+        }
+        
+        .character:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.1);
+        }
+        
+        .character-img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--accent);
+            margin: 0 auto 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: white;
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+        }
+        
+        .character:hover .character-img {
+            border-color: var(--highlight);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+        }
+        
+        .character h3 {
+            margin-bottom: 5px;
+            color: var(--accent);
+        }
+        
+        .character p {
+            font-size: 0.9rem;
+            color: #ccc;
+        }
+        
+        .dialog-box {
+            background-color: var(--paper);
+            color: #333;
+            padding: 25px;
+            border-radius: 10px;
+            margin: 25px 0;
+            position: relative;
+            box-shadow: 3px 3px 12px rgba(0, 0, 0, 0.2);
+            border-left: 5px solid var(--accent);
+        }
+        
+        .dialog-box::before {
+            content: """;
+            position: absolute;
+            top: -25px;
+            left: 15px;
+            font-size: 80px;
+            color: var(--accent);
+            font-family: Georgia, serif;
+            opacity: 0.3;
+        }
+        
+        .dialog-options {
+            margin-top: 20px;
+        }
+        
+        .dialog-option {
+            display: block;
+            background-color: var(--light-bg);
+            color: var(--text);
+            padding: 12px 15px;
+            margin: 10px 0;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s;
+            border-left: 3px solid transparent;
+        }
+        
+        .dialog-option:hover {
+            background-color: var(--accent);
+            padding-left: 20px;
+            border-left: 3px solid var(--highlight);
+        }
+        
+        .clue-list {
+            list-style-type: none;
+            padding: 0;
+        }
+        
+        .clue-list li {
+            background-color: rgba(255, 255, 255, 0.05);
+            margin: 10px 0;
+            padding: 15px;
+            border-left: 3px solid var(--accent);
+            border-radius: 5px;
+            transition: all 0.3s;
+            background: linear-gradient(to right, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.1));
+            display: flex;
+            align-items: center;
+        }
+        
+        .clue-list li i {
+            margin-right: 10px;
+            color: var(--accent);
+        }
+        
+        .clue-list li:hover {
+            background: linear-gradient(to right, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.15));
+            border-left: 3px solid var(--highlight);
+        }
+        
+        #accuse-screen select, #accuse-screen textarea {
+            width: 100%;
+            padding: 12px;
+            margin: 12px 0;
+            background-color: rgba(255, 255, 255, 0.1);
+            border: 1px solid var(--accent);
+            color: var(--text);
+            border-radius: 6px;
+            font-family: inherit;
+        }
+        
+        #accuse-screen select:focus, #accuse-screen textarea:focus {
+            outline: none;
+            border-color: var(--highlight);
+            box-shadow: 0 0 8px rgba(255, 209, 102, 0.5);
+        }
+        
+        .progress-container {
+            margin: 25px 0;
+        }
+        
+        .progress-bar {
+            height: 12px;
+            background-color: rgba(255, 255, 255, 0.2);
+            border-radius: 6px;
+            margin: 15px 0;
+            overflow: hidden;
+            box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2);
+        }
+        
+        .progress {
+            height: 100%;
+            background: linear-gradient(to right, var(--accent), var(--highlight));
+            width: 0%;
+            transition: width 0.5s;
+        }
+        
+        .result-content {
+            background-color: rgba(0, 0, 0, 0.2);
+            padding: 25px;
+            border-radius: 10px;
+            margin: 25px 0;
+            border-left: 5px solid var(--accent);
+        }
+        
+        .inventory {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .inventory-item {
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            width: 70px;
+            height: 70px;
+            border-radius: 8px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.5rem;
+            color: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            cursor: pointer;
+            transition: all 0.3s;
+            position: relative;
+        }
+        
+        .inventory-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.4);
+        }
+        
+        .inventory-item span {
+            position: absolute;
+            bottom: 5px;
+            font-size: 0.7rem;
+            text-align: center;
+            width: 100%;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+        }
+        
+        .typewriter {
+            overflow: hidden;
+            border-right: 0.15em solid var(--accent);
+            white-space: nowrap;
+            margin: 0 auto;
+            letter-spacing: 0.15em;
+            animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
+        }
+        
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 100% }
+        }
+        
+        @keyframes blink-caret {
+            from, to { border-color: transparent }
+            50% { border-color: var(--accent) }
+        }
+        
+        .fade-in {
+            animation: fadeIn 0.8s;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        .shake {
+            animation: shake 0.5s;
+        }
+        
+        @keyframes shake {
+            0% { transform: translateX(0); }
+            20% { transform: translateX(-10px); }
+            40% { transform: translateX(10px); }
+            60% { transform: translateX(-10px); }
+            80% { transform: translateX(10px); }
+            100% { transform: translateX(0); }
+        }
+        
+        .tooltip {
+            position: relative;
+            display: inline-block;
+        }
+        
+        .tooltip .tooltiptext {
+            visibility: hidden;
+            width: 140px;
+            background-color: var(--dark-bg);
+            color: var(--text);
+            text-align: center;
+            border-radius: 6px;
+            padding: 8px;
+            position: absolute;
+            z-index: 1;
+            bottom: 125%;
+            left: 50%;
+            margin-left: -70px;
+            opacity: 0;
+            transition: opacity 0.3s;
+            font-size: 0.8rem;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+        
+        .tooltip:hover .tooltiptext {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        .crime-scene {
+            text-align: center;
+            margin: 25px 0;
+            padding: 20px;
+            background: linear-gradient(to right, rgba(0,0,0,0.3), rgba(0,0,0,0.1));
+            border-radius: 10px;
+            border-left: 5px solid var(--highlight);
+        }
+        
+        .crime-scene img {
+            max-width: 100%;
+            border-radius: 8px;
+            margin-top: 15px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.5);
+        }
+        
+        .navigation {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin: 20px 0;
+        }
+        
+        .timer {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: var(--light-bg);
+            padding: 10px 15px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+            font-size: 1.2rem;
+            color: var(--highlight);
+            border: 1px solid var(--accent);
+            z-index: 100;
+        }
+        
+        @media (max-width: 768px) {
+            .note {
+                width: 100%;
+                margin: 10px 0;
+            }
+            
+            .character {
+                width: 100%;
+                margin: 10px 0;
+            }
+            
+            .character-img {
+                width: 100px;
+                height: 100px;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .btn {
+                width: 100%;
+                margin: 8px 0;
+            }
+            
+            .navigation {
+                flex-direction: column;
+            }
+            
+            .timer {
+                position: relative;
+                top: 0;
+                right: 0;
+                margin-bottom: 20px;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Misteri Pencurian di Museum Seni</h1>
+            <p class="subtitle">Karya Seni Paling Berharga Telah Dicuri - Bisakah Anda Memecahkan Misteri Ini?</p>
+        </header>
+        
+        <div class="timer">
+            <i class="fas fa-clock"></i> Waktu: <span id="timer">60:00</span>
+        </div>
+        
+        <!-- Layar Selamat Datang -->
+        <div id="welcome-screen" class="game-screen fade-in">
+            <h2 class="typewriter">Selamat Datang, Detektif</h2>
+            <div class="crime-scene">
+                <p>Malam ini, pada pembukaan pameran seni modern, sebuah mahakarya langka "Moonlight Sonata" oleh pelukis ternama Vincent LeRoux telah dicuri dari Galeri Utama Museum Seni Nasional.</p>
+                <p>Pencurian terjadi saat lampu padam selama 5 menit karena gangguan listrik. Sistem keamanan museum tidak mendeteksi adanya peretasan.</p>
+                <p>Anda adalah detektif terbaik yang ditugaskan untuk menyelidiki kasus ini. Wawancarai para tersangka, kumpulkan bukti, dan ungkap pencuri sebenarnya sebelum waktu habis!</p>
+            </div>
+            <button id="start-btn" class="btn pulse"><i class="fas fa-play"></i> Mulai Investigasi</button>
+        </div>
+        
+        <!-- Layar Lokasi -->
+        <div id="location-screen" class="game-screen">
+            <h2><i class="fas fa-map-marker-alt"></i> Pilih Lokasi untuk Diselidiki</h2>
+            <div class="note-container">
+                <div class="note" data-location="gallery">
+                    <h3>Galeri Utama</h3>
+                    <p>Tempat lukisan dicuri. Terdapat bingkai kosong dan area yang dikordon polisi.</p>
+                </div>
+                <div class="note" data-location="security">
+                    <h3>Ruang Keamanan</h3>
+                    <p>Pusat kendali sistem keamanan museum. Terdapat monitor CCTV dan panel kontrol.</p>
+                </div>
+                <div class="note" data-location="office">
+                    <h3>Kantor Kurator</h3>
+                    <p>Ruang kerja Kurator Museum. Berisi dokumen dan katalog pameran.</p>
+                </div>
+                <div class="note" data-location="storage">
+                    <h3>Ruang Penyimpanan</h3>
+                    <p>Tempat penyimpanan karya seni yang tidak dipamerkan. Agak berantakan dan berdebu.</p>
+                </div>
+            </div>
+            
+            <h3><i class="fas fa-clipboard-list"></i> Inventaris Bukti</h3>
+            <div class="inventory" id="inventory">
+                <!-- Inventory items will be added here dynamically -->
+            </div>
+            
+            <div class="navigation">
+                <button id="to-suspects-btn" class="btn"><i class="fas fa-users"></i> Wawancara Tersangka</button>
+                <button id="to-accuse-btn" class="btn"><i class="fas fa-gavel"></i> Buat Kesimpulan</button>
+                <button id="to-clues-btn" class="btn"><i class="fas fa-search"></i> Lihat Bukti</button>
+            </div>
+        </div>
+        
+        <!-- Layar Tersangka -->
+        <div id="suspects-screen" class="game-screen">
+            <h2><i class="fas fa-users"></i> Wawancara Tersangka</h2>
+            <div class="character-grid">
+                <div class="character" data-suspect="curator">
+                    <div class="tooltip">
+                        <div class="character-img">C</div>
+                        <span class="tooltiptext">Kurator Museum</span>
+                    </div>
+                    <h3>Dr. Amelia Chen</h3>
+                    <p>Kurator Museum</p>
+                </div>
+                <div class="character" data-suspect="guard">
+                    <div class="tooltip">
+                        <div class="character-img">G</div>
+                        <span class="tooltiptext">Kepala Keamanan</span>
+                    </div>
+                    <h3>Bpk. Rizky Maulana</h3>
+                    <p>Kepala Keamanan</p>
+                </div>
+                <div class="character" data-suspect="artist">
+                    <div class="tooltip">
+                        <div class="character-img">A</div>
+                        <span class="tooltiptext">Seniman Tamu</span>
+                    </div>
+                    <h3>Maria Rodriguez</h3>
+                    <p>Seniman Tamu</p>
+                </div>
+                <div class="character" data-suspect="donor">
+                    <div class="tooltip">
+                        <div class="character-img">D</div>
+                        <span class="tooltiptext">Donator Kaya</span>
+                    </div>
+                    <h3>Mr. Alexander Wright</h3>
+                    <p>Donator Kaya</p>
+                </div>
+            </div>
+            
+            <div class="navigation">
+                <button id="to-locations-btn" class="btn"><i class="fas fa-map-marker-alt"></i> Selidiki Lokasi</button>
+                <button id="to-accuse-from-suspects" class="btn"><i class="fas fa-gavel"></i> Buat Kesimpulan</button>
+                <button id="to-clues-from-suspects" class="btn"><i class="fas fa-search"></i> Lihat Bukti</button>
+            </div>
+        </div>
+        
+        <!-- Layar Dialog -->
+        <div id="dialog-screen" class="game-screen">
+            <h2 id="dialog-character-name"><i class="fas fa-comment"></i> Wawancara</h2>
+            <div class="dialog-box">
+                <p id="dialog-text">Halo, Detektif. Ada yang bisa saya bantu dengan penyelidikan Anda?</p>
+                <div class="dialog-options" id="dialog-options">
+                    <!-- Opsi dialog akan dimasukkan di sini oleh JavaScript -->
+                </div>
+            </div>
+            <button id="end-dialog-btn" class="btn"><i class="fas fa-arrow-left"></i> Kembali ke Daftar Tersangka</button>
+        </div>
+        
+        <!-- Layar Investigasi -->
+        <div id="investigate-screen" class="game-screen">
+            <h2 id="location-name"><i class="fas fa-search"></i> Investigasi Lokasi</h2>
+            <div id="location-description">
+                <p>Anda sedang memeriksa lokasi ini. Apa yang ingin Anda lakukan?</p>
+            </div>
+            <div id="investigation-options">
+                <!-- Opsi investigasi akan dimasukkan di sini oleh JavaScript -->
+            </div>
+            <button id="back-to-locations" class="btn"><i class="fas fa-arrow-left"></i> Kembali ke Daftar Lokasi</button>
+        </div>
+        
+        <!-- Layar Bukti -->
+        <div id="clues-screen" class="game-screen">
+            <h2><i class="fas fa-search"></i> Bukti yang Dikumpulkan</h2>
+            
+            <div class="progress-container">
+                <p>Tingkat Penyelesaian Investigasi:</p>
+                <div class="progress-bar">
+                    <div class="progress" id="progress-bar"></div>
+                </div>
+                <p id="progress-text">0%</p>
+            </div>
+            
+            <ul class="clue-list" id="clue-list">
+                <!-- Daftar bukti akan dimasukkan di sini oleh JavaScript -->
+            </ul>
+            <button id="back-from-clues" class="btn"><i class="fas fa-arrow-left"></i> Kembali</button>
+        </div>
+        
+        <!-- Layar Kesimpulan -->
+        <div id="accuse-screen" class="game-screen">
+            <h2><i class="fas fa-gavel"></i> Buat Kesimpulan</h2>
+            <p>Setelah mengumpulkan semua bukti, siapa menurut Anda pencuri sebenarnya?</p>
+            
+            <label for="suspect-select">Pilih Tersangka:</label>
+            <select id="suspect-select">
+                <option value="">-- Pilih Tersangka --</option>
+                <option value="curator">Dr. Amelia Chen (Kurator)</option>
+                <option value="guard">Bpk. Rizky Maulana (Kepala Keamanan)</option>
+                <option value="artist">Maria Rodriguez (Seniman Tamu)</option>
+                <option value="donor">Mr. Alexander Wright (Donator)</option>
+            </select>
+            
+            <label for="motive-text">Jelaskan Motif:</label>
+            <textarea id="motive-text" rows="4" placeholder="Mengapa dia mencuri lukisan?"></textarea>
+            
+            <label for="evidence-text">Jelaskan Bukti:</label>
+            <textarea id="evidence-text" rows="4" placeholder="Bukti apa yang mendukung kesimpulan Anda?"></textarea>
+            
+            <div class="navigation">
+                <button id="submit-accusation" class="btn btn-success"><i class="fas fa-check"></i> Ajukan Kesimpulan</button>
+                <button id="back-from-accuse" class="btn"><i class="fas fa-arrow-left"></i> Kembali</button>
+            </div>
+        </div>
+        
+        <!-- Layar Hasil -->
+        <div id="result-screen" class="game-screen">
+            <h2 id="result-title"><i class="fas fa-trophy"></i> Hasil Investigasi</h2>
+            <div id="result-content" class="result-content">
+                <p>Terima kasih telah menyelesaikan investigasi.</p>
+            </div>
+            <button id="restart-btn" class="btn pulse"><i class="fas fa-redo"></i> Main Lagi</button>
+        </div>
+    </div>
+
+    <script>
+        // Data game
+        const gameData = {
+            currentScreen: 'welcome',
+            previousScreen: 'welcome',
+            collectedClues: [],
+            currentCharacter: null,
+            currentLocation: null,
+            conversationsHad: {
+                curator: false,
+                guard: false,
+                artist: false,
+                donor: false
+            },
+            locationsVisited: {
+                gallery: false,
+                security: false,
+                office: false,
+                storage: false
+            },
+            culprit: 'curator', // Kurator adalah pelakunya
+            timer: 60 * 60, // 60 menit dalam detik
+            timerInterval: null,
+            solution: {
+                motive: "Dr. Amelia Chen menjual lukisan itu untuk menutupi hutang judi yang besar. Dia merencanakan pencurian selama berbulan-bulan dan memanfaatkan pemadaman listrik yang sudah dia ketahui sebelumnya.",
+                evidence: [
+                    "Catatan hutang judi yang disembunyikan di laci meja kurator",
+                    "Email kepada pembeli gelap yang ditemukan di komputer pribadi",
+                    "Kunci palsu yang dibuat untuk lemari penyimpanan di ruang keamanan",
+                    "Jejak serat dari sarung tangan kurator ditemukan di dekat bingkai lukisan"
+                ]
+            },
+            characters: {
+                curator: {
+                    name: "Dr. Amelia Chen",
+                    relationship: "Kurator Museum",
+                    dialogs: [
+                        {
+                            question: "Apa yang Anda lakukan saat pemadaman listrik?",
+                            answer: "Saya sedang memeriksa katalog pameran di kantor saya. Saya sama sekali tidak meninggalkan ruangan."
+                        },
+                        {
+                            question: "Apakah Anda mengetahui kelemahan sistem keamanan?",
+                            answer: "Tentu tidak! Sistem keamanan museum sangat canggih. Saya yakin ini pekerjaan profesional."
+                        },
+                        {
+                            question: "Apakah ada yang mencurigakan sebelum kejadian?",
+                            answer: "Tidak ada yang mencurigakan. Semua berjalan normal sampai tiba-tiba lampu padam."
+                        }
+                    ]
+                },
+                guard: {
+                    name: "Bpk. Rizky Maulana",
+                    relationship: "Kepala Keamanan",
+                    dialogs: [
+                        {
+                            question: "Apa yang Anda lakukan saat pemadaman listrik?",
+                            answer: "Saya langsung memeriksa panel listrik dan generator darurat. Generator seharusnya aktif dalam 15 detik, tapi butuh waktu lebih lama."
+                        },
+                        {
+                            question: "Apakah sistem keamanan tidak aktif selama pemadaman?",
+                            answer: "Sistem memiliki baterai cadangan yang bertahan 24 jam. Tapi anehnya, CCTV galeri utama tidak merekam apa pun selama 5 menit itu."
+                        },
+                        {
+                            question: "Apakah Anda melihat sesuatu yang mencurigakan?",
+                            answer: "Saya melihat seseorang bergegas meninggalkan galeri tepat sebelum lampu padam, tapi saya tidak bisa mengenali siapa itu."
+                        }
+                    ]
+                },
+                artist: {
+                    name: "Maria Rodriguez",
+                    relationship: "Seniman Tamu",
+                    dialogs: [
+                        {
+                            question: "Apa yang Anda lakukan saat pemadaman listrik?",
+                            answer: "Saya sedang berbicara dengan Mr. Wright tentang karya seninya. Tiba-tiba gelap dan kami semua kaget."
+                        },
+                        {
+                            question: "Apa pendapat Anda tentang lukisan yang dicuri?",
+                            answer: "Moonlight Sonata adalah mahakarya. Saya tidak percaya seseorang berani mencurinya. Ini adalah kejahatan terhadap seni!"
+                        },
+                        {
+                            question: "Apakah Anda mengenal kurator museum?",
+                            answer: "Dr. Chen? Ya, kami bertemu beberapa kali. Dia terlihat stres belakangan ini, mungkin karena persiapan pameran."
+                        }
+                    ]
+                },
+                donor: {
+                    name: "Mr. Alexander Wright",
+                    relationship: "Donator Kaya",
+                    dialogs: [
+                        {
+                            question: "Apa yang Anda lakukan saat pemadaman listrik?",
+                            answer: "Saya sedang mengagumi patung di sebelah galeri utama bersama Ms. Rodriguez. Kami sama-sama terkejut dengan pemadaman itu."
+                        },
+                        {
+                            question: "Apakah Anda memiliki kepentingan dengan lukisan yang dicuri?",
+                            answer: "Sebagai donator, saya tentu peduli dengan semua karya seni di museum ini. Tapi saya tidak memiliki kepentingan khusus dengan lukisan itu."
+                        },
+                        {
+                            question: "Apakah Anda melihat sesuatu yang mencurigakan?",
+                            answer: "Saya melihat kurator berjalan cepat menuju galeri tepat sebelum lampu padam. Tapi mungkin dia hanya memeriksa sesuatu."
+                        }
+                    ]
+                }
+            },
+            locations: {
+                gallery: {
+                    name: "Galeri Utama",
+                    description: "Ruangan megah dengan langit-langit tinggi dan pencahayaan dramatis. Di tengah ruangan, terdapat bingkai kosong tempat 'Moonlight Sonata' sebelumnya dipajang. Polisi telah memasang kordon di sekitar area tersebut.",
+                    clues: [
+                        {
+                            name: "Bingkai Kosong",
+                            description: "Bingkai lukisan yang sudah kosong. Terlihat goresan halus di sekelilingnya, menunjukkan lukisan dipotong dengan alat tajam.",
+                            found: false,
+                            icon: "fas fa-frame"
+                        },
+                        {
+                            name: "Serat Sarung Tangan",
+                            description: "Beberapa serat halus berwarna hitam ditemukan di dekat bingkai. Terlihat seperti serat sarung tangan khusus.",
+                            found: false,
+                            icon: "fas fa-mitten"
+                        }
+                    ]
+                },
+                security: {
+                    name: "Ruang Keamanan",
+                    description: "Ruangan berisi monitor CCTV, panel kontrol keamanan, dan berbagai peralatan monitoring. Beberapa layar menunjukkan rekaman dari berbagai sudut museum.",
+                    clues: [
+                        {
+                            name: "Log CCTV",
+                            description: "Catatan sistem menunjukkan bahwa rekaman dari kamera galeri utama terhapus selama periode pemadaman listrik.",
+                            found: false,
+                            icon: "fas fa-video"
+                        },
+                        {
+                            name: "Kunci Palsu",
+                            description: "Kunci duplikat lemari penyimpanan ditemukan tersembunyi di balik rak. Kunci ini tidak tercatat dalam inventaris resmi.",
+                            found: false,
+                            icon: "fas fa-key"
+                        }
+                    ]
+                },
+                office: {
+                    name: "Kantor Kurator",
+                    description: "Ruangan rapi berisi buku-buku seni, katalog pameran, dan meja kerja yang terorganisir rapi. Komputer masih menyala dengan dokumen terbuka.",
+                    clues: [
+                        {
+                            name: "Email Tersembunyi",
+                            description: "Email kepada pembeli gelap ditemukan di folder tersembunyi komputer. Membahas pengiriman 'barang khusus' dengan harga tinggi.",
+                            found: false,
+                            icon: "fas fa-envelope"
+                        },
+                        {
+                            name: "Catatan Hutang",
+                            description: "Catatan hutang judi yang disembunyikan di balik laci. Jumlahnya sangat besar dan ada tenggat waktu pembayaran.",
+                            found: false,
+                            icon: "fas fa-file-invoice-dollar"
+                        }
+                    ]
+                },
+                storage: {
+                    name: "Ruang Penyimpanan",
+                    description: "Ruang gudang yang berisi karya seni yang tidak dipamerkan. Agak berantakan dan berdebu, dengan lorong-lorong antara rak penyimpanan.",
+                    clues: [
+                        {
+                            name: "Kotak Pengiriman",
+                            description: "Kotak pengiriman kosong dengan label alamat luar negeri. Tidak tercatat dalam pengiriman resmi museum.",
+                            found: false,
+                            icon: "fas fa-box-open"
+                        },
+                        {
+                            name: "Alat Pemotong",
+                            description: "Alat pemotong khusus yang biasanya digunakan untuk melepas lukisan dari bingkai. Terdapat sidik jari pada pegangan.",
+                            found: false,
+                            icon: "fas fa-cut"
+                        }
+                    ]
+                }
+            }
+        };
+
+        // Elemen DOM
+        const screens = {
+            welcome: document.getElementById('welcome-screen'),
+            location: document.getElementById('location-screen'),
+            suspects: document.getElementById('suspects-screen'),
+            dialog: document.getElementById('dialog-screen'),
+            investigate: document.getElementById('investigate-screen'),
+            clues: document.getElementById('clues-screen'),
+            accuse: document.getElementById('accuse-screen'),
+            result: document.getElementById('result-screen')
+        };
+
+        // Inisialisasi game
+        function initGame() {
+            // Event listeners untuk navigasi
+            document.getElementById('start-btn').addEventListener('click', () => {
+                showScreen('location');
+                startTimer();
+            });
+            
+            document.getElementById('to-suspects-btn').addEventListener('click', () => {
+                gameData.previousScreen = gameData.currentScreen;
+                showScreen('suspects');
+            });
+            
+            document.getElementById('to-accuse-btn').addEventListener('click', () => {
+                gameData.previousScreen = gameData.currentScreen;
+                showScreen('accuse');
+            });
+            
+            document.getElementById('to-clues-btn').addEventListener('click', () => {
+                gameData.previousScreen = gameData.currentScreen;
+                showScreen('clues');
+            });
+            
+            document.getElementById('to-locations-btn').addEventListener('click', () => {
+                gameData.previousScreen = gameData.currentScreen;
+                showScreen('location');
+            });
+            
+            document.getElementById('to-accuse-from-suspects').addEventListener('click', () => {
+                gameData.previousScreen = gameData.currentScreen;
+                showScreen('accuse');
+            });
+            
+            document.getElementById('to-clues-from-suspects').addEventListener('click', () => {
+                gameData.previousScreen = gameData.currentScreen;
+                showScreen('clues');
+            });
+            
+            document.getElementById('back-from-clues').addEventListener('click', () => {
+                showScreen(gameData.previousScreen);
+            });
+            
+            document.getElementById('back-from-accuse').addEventListener('click', () => {
+                showScreen(gameData.previousScreen);
+            });
+            
+            document.getElementById('end-dialog-btn').addEventListener('click', () => showScreen('suspects'));
+            document.getElementById('back-to-locations').addEventListener('click', () => showScreen('location'));
+            document.getElementById('submit-accusation').addEventListener('click', checkAccusation);
+            document.getElementById('restart-btn').addEventListener('click', restartGame);
+            
+            // Event listeners untuk karakter
+            document.querySelectorAll('.character').forEach(el => {
+                el.addEventListener('click', () => {
+                    const suspect = el.getAttribute('data-suspect');
+                    startConversation(suspect);
+                });
+            });
+            
+            // Event listeners untuk lokasi
+            document.querySelectorAll('.note[data-location]').forEach(el => {
+                el.addEventListener('click', () => {
+                    const location = el.getAttribute('data-location');
+                    investigateLocation(location);
+                });
+            });
+            
+            // Perbarui progress bar
+            updateProgressBar();
+            updateInventory();
+        }
+
+        // Tampilkan layar tertentu
+        function showScreen(screenName) {
+            // Sembunyikan semua layar
+            Object.values(screens).forEach(screen => {
+                screen.style.display = 'none';
+            });
+            
+            // Tampilkan layar yang diminta
+            screens[screenName].style.display = 'block';
+            gameData.currentScreen = screenName;
+            
+            // Jika layar bukti, perbarui daftar bukti
+            if (screenName === 'clues') {
+                updateCluesList();
+            }
+            
+            // Jika layar lokasi, perbarui inventaris
+            if (screenName === 'location') {
+                updateInventory();
+            }
+        }
+
+        // Mulai percakapan dengan karakter
+        function startConversation(suspectId) {
+            gameData.currentCharacter = suspectId;
+            const character = gameData.characters[suspectId];
+            
+            // Set nama karakter di dialog
+            document.getElementById('dialog-character-name').textContent = `Wawancara dengan ${character.name}`;
+            
+            // Kosongkan opsi dialog
+            const optionsContainer = document.getElementById('dialog-options');
+            optionsContainer.innerHTML = '';
+            
+            // Tambahkan opsi dialog
+            character.dialogs.forEach(dialog => {
+                const optionEl = document.createElement('div');
+                optionEl.className = 'dialog-option';
+                optionEl.innerHTML = `<i class="fas fa-question"></i> ${dialog.question}`;
+                optionEl.addEventListener('click', () => {
+                    document.getElementById('dialog-text').textContent = dialog.answer;
+                    
+                    // Jika ini pertama kalinya berbicara dengan karakter ini, dapatkan petunjuk
+                    if (!gameData.conversationsHad[suspectId]) {
+                        gameData.conversationsHad[suspectId] = true;
+                        
+                        // Berikan petunjuk khusus berdasarkan karakter
+                        let newClue = '';
+                        if (suspectId === 'curator') {
+                            newClue = 'Kurator terlihat gugup dan menghindari kontak mata';
+                        } else if (suspectId === 'guard') {
+                            newClue = 'Kepala keamanan menyebutkan keanehan pada sistem CCTV';
+                        } else if (suspectId === 'artist') {
+                            newClue = 'Seniman tamu mengatakan kurator terlihat stres belakangan ini';
+                        } else if (suspectId === 'donor') {
+                            newClue = 'Donator melihat kurator menuju galeri tepat sebelum pemadaman';
+                        }
+                        
+                        if (newClue && !gameData.collectedClues.includes(newClue)) {
+                            gameData.collectedClues.push(newClue);
+                            updateProgressBar();
+                            updateInventory();
+                        }
+                    }
+                });
+                
+                optionsContainer.appendChild(optionEl);
+            });
+            
+            showScreen('dialog');
+        }
+
+        // Investigasi lokasi
+        function investigateLocation(locationId) {
+            gameData.currentLocation = locationId;
+            const location = gameData.locations[locationId];
+            
+            // Set nama lokasi
+            document.getElementById('location-name').textContent = `Menyelidiki: ${location.name}`;
+            
+            // Set deskripsi lokasi
+            document.getElementById('location-description').innerHTML = `<p>${location.description}</p>`;
+            
+            // Kosongkan opsi investigasi
+            const optionsContainer = document.getElementById('investigation-options');
+            optionsContainer.innerHTML = '';
+            
+            // Tambahkan opsi investigasi berdasarkan petunjuk yang tersedia
+            location.clues.forEach((clue, index) => {
+                if (!clue.found) {
+                    const optionEl = document.createElement('div');
+                    optionEl.className = 'dialog-option';
+                    optionEl.innerHTML = `<i class="${clue.icon}"></i> Periksa: ${clue.name}`;
+                    optionEl.addEventListener('click', () => {
+                        // Tandai petunjuk sebagai ditemukan
+                        gameData.locations[locationId].clues[index].found = true;
+                        
+                        // Tambahkan ke koleksi petunjuk
+                        gameData.collectedClues.push(`${clue.name}: ${clue.description}`);
+                        
+                        // Perbarui UI
+                        updateProgressBar();
+                        updateInventory();
+                        optionEl.style.display = 'none';
+                        
+                        // Tandai lokasi telah dikunjungi
+                        gameData.locationsVisited[locationId] = true;
+                    });
+                    
+                    optionsContainer.appendChild(optionEl);
+                }
+            });
+            
+            showScreen('investigate');
+        }
+
+        // Perbarui daftar bukti
+        function updateCluesList() {
+            const cluesList = document.getElementById('clue-list');
+            cluesList.innerHTML = '';
+            
+            if (gameData.collectedClues.length === 0) {
+                cluesList.innerHTML = '<li>Anda belum menemukan bukti apa pun. Selidiki lokasi dan wawancarai tersangka untuk menemukan bukti.</li>';
+                return;
+            }
+            
+            gameData.collectedClues.forEach(clue => {
+                const li = document.createElement('li');
+                li.innerHTML = `<i class="fas fa-clue"></i> ${clue}`;
+                cluesList.appendChild(li);
+            });
+        }
+
+        // Perbarui progress bar
+        function updateProgressBar() {
+            const totalClues = 12; // Total semua petunjuk yang mungkin
+            const progress = (gameData.collectedClues.length / totalClues) * 100;
+            document.getElementById('progress-bar').style.width = `${progress}%`;
+            document.getElementById('progress-text').textContent = `${Math.round(progress)}%`;
+        }
+
+        // Perbarui inventaris
+        function updateInventory() {
+            const inventory = document.getElementById('inventory');
+            inventory.innerHTML = '';
+            
+            if (gameData.collectedClues.length === 0) {
+                inventory.innerHTML = '<p>Inventaris kosong. Kumpulkan bukti untuk mengisi inventaris.</p>';
+                return;
+            }
+            
+            // Batasi tampilan inventaris hingga 8 item terakhir
+            const recentClues = gameData.collectedClues.slice(-8);
+            
+            recentClues.forEach(clue => {
+                const item = document.createElement('div');
+                item.className = 'inventory-item';
+                
+                // Ambil ikon berdasarkan jenis petunjuk
+                let icon = 'fas fa-clue';
+                if (clue.includes('Email')) icon = 'fas fa-envelope';
+                else if (clue.includes('Kunci')) icon = 'fas fa-key';
+                else if (clue.includes('Serat')) icon = 'fas fa-mitten';
+                else if (clue.includes('Catatan')) icon = 'fas fa-file-invoice-dollar';
+                else if (clue.includes('Bingkai')) icon = 'fas fa-frame';
+                else if (clue.includes('Log')) icon = 'fas fa-video';
+                else if (clue.includes('Kotak')) icon = 'fas fa-box-open';
+                else if (clue.includes('Alat')) icon = 'fas fa-cut';
+                
+                // Ambil nama pendek untuk petunjuk
+                const clueName = clue.split(':')[0];
+                const shortName = clueName.length > 10 ? clueName.substring(0, 10) + '...' : clueName;
+                
+                item.innerHTML = `<i class="${icon}"></i><span>${shortName}</span>`;
+                inventory.appendChild(item);
+            });
+        }
+
+        // Mulai timer
+        function startTimer() {
+            clearInterval(gameData.timerInterval);
+            
+            gameData.timerInterval = setInterval(() => {
+                gameData.timer--;
+                
+                const minutes = Math.floor(gameData.timer / 60);
+                const seconds = gameData.timer % 60;
+                
+                document.getElementById('timer').textContent = `${minutes}:${seconds.toString().padStart(2, '0')}`;
+                
+                if (gameData.timer <= 0) {
+                    clearInterval(gameData.timerInterval);
+                    showScreen('result');
+                    document.getElementById('result-title').textContent = 'Waktu Habis!';
+                    document.getElementById('result-content').innerHTML = `
+                        <p>Maaf, waktu investigasi Anda telah habis. Pencuri berhasil melarikan diri dengan lukisan tersebut.</p>
+                        <p>Anda berhasil mengumpulkan ${gameData.collectedClues.length} dari 12 bukti yang mungkin.</p>
+                        <p>Silakan coba lagi untuk memecahkan kasus ini!</p>
+                    `;
+                }
+            }, 1000);
+        }
+
+        // Periksa kesimpulan pemain
+        function checkAccusation() {
+            const selectedSuspect = document.getElementById('suspect-select').value;
+            const motive = document.getElementById('motive-text').value;
+            const evidence = document.getElementById('evidence-text').value;
+            
+            if (!selectedSuspect || !motive || !evidence) {
+                alert('Harap isi semua field sebelum mengajukan kesimpulan!');
+                return;
+            }
+            
+            // Hentikan timer
+            clearInterval(gameData.timerInterval);
+            
+            // Tampilkan layar hasil
+            showScreen('result');
+            
+            if (selectedSuspect === gameData.culprit) {
+                document.getElementById('result-title').textContent = 'Selamat! Kasus Terpecahkan';
+                document.getElementById('result-content').innerHTML = `
+                    <p>Anda benar! ${gameData.characters[gameData.culprit].name} adalah pencurinya.</p>
+                    <p><strong>Motif:</strong> ${gameData.solution.motive}</p>
+                    <p><strong>Bukti-bukti:</strong></p>
+                    <ul>
+                        ${gameData.solution.evidence.map(ev => `<li>${ev}</li>`).join('')}
+                    </ul>
+                    <p>Anda berhasil mengumpulkan ${gameData.collectedClues.length} dari 12 bukti yang mungkin.</p>
+                    <p>Waktu tersisa: ${Math.floor(gameData.timer / 60)}:${(gameData.timer % 60).toString().padStart(2, '0')}</p>
+                `;
+            } else {
+                document.getElementById('result-title').textContent = 'Kesimpulan Salah';
+                document.getElementById('result-content').innerHTML = `
+                    <p>Maaf, kesimpulan Anda salah. ${gameData.characters[selectedSuspect].name} bukan pencurinya.</p>
+                    <p>Silakan main lagi dan periksa bukti-bukti dengan lebih cermat.</p>
+                    <p>Anda mengumpulkan ${gameData.collectedClues.length} dari 12 bukti yang mungkin.</p>
+                `;
+            }
+        }
+
+        // Mulai ulang game
+        function restartGame() {
+            // Hentikan timer
+            clearInterval(gameData.timerInterval);
+            
+            // Reset semua data game
+            gameData.collectedClues = [];
+            gameData.currentCharacter = null;
+            gameData.currentLocation = null;
+            gameData.timer = 60 * 60;
+            
+            // Reset semua percakapan
+            for (let key in gameData.conversationsHad) {
+                gameData.conversationsHad[key] = false;
+            }
+            
+            // Reset semua kunjungan lokasi
+            for (let key in gameData.locationsVisited) {
+                gameData.locationsVisited[key] = false;
+            }
+            
+            // Reset semua petunjuk di lokasi
+            for (let location in gameData.locations) {
+                gameData.locations[location].clues.forEach(clue => {
+                    clue.found = false;
+                });
+            }
+            
+            // Reset form kesimpulan
+            document.getElementById('suspect-select').value = '';
+            document.getElementById('motive-text').value = '';
+            document.getElementById('evidence-text').value = '';
+            
+            // Reset timer display
+            document.getElementById('timer').textContent = '60:00';
+            
+            // Kembali ke layar welcome
+            showScreen('welcome');
+            
+            // Perbarui progress bar
+            updateProgressBar();
+            updateInventory();
+        }
+
+        // Inisialisasi game ketika halaman dimuat
+        window.addEventListener('DOMContentLoaded', initGame);
+    </script>
+</body>
+</html>

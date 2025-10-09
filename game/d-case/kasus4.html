@@ -1,0 +1,1020 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Misteri Pembunuhan di Vila Tua - Game Detektif</title>
+    <style>
+        :root {
+            --dark-bg: #1a1a2e;
+            --light-bg: #16213e;
+            --accent: #4cc9f0;
+            --text: #f1f1f1;
+            --paper: #f0e6d2;
+            --highlight: #ffd166;
+        }
+        
+        body {
+            font-family: 'Courier New', monospace;
+            background-color: var(--dark-bg);
+            color: var(--text);
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI1MCIgaGVpZ2h0PSI1MCIgb3BhY2l0eT0iMC4wNSI+PHBhdGggZD0iTTAgMGg1MHY1MEgweiIgZmlsbD0ibm9uZSIvPjxwYXRoIGQ9Ik0xMCAxMGg0TTEwIDE1aDRNMTAgMjBoNE0xMCAyNmg0TTEwIDMxaDRNMTAgMzZoNE0xMCA0MWg0TTI2IDEwaDRNMjYgMTVoNE0yNiAyMGg0TTI2IDI2aDRNMjYgMzFoNE0yNiAzNmg0TTI2IDQxaDRNNDIgMTBoNE00MiAxNWg0TTQyIDIwaDQ0NDIgMjZoNE00MiAzMWg0TTQyIDM2aDRNNDIgNDFoNCIgc3Ryb2tlPSIjZmZmIiBzdHJva2Utd2lkdGg9IjEiLz48L3N2Zz4=');
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            text-align: center;
+            border-bottom: 2px solid var(--accent);
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+            position: relative;
+        }
+        
+        h1 {
+            color: var(--accent);
+            font-size: 2.5rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            margin-bottom: 10px;
+        }
+        
+        .game-screen {
+            display: none;
+            background-color: var(--light-bg);
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+            margin-bottom: 20px;
+            border: 1px solid rgba(76, 201, 240, 0.3);
+        }
+        
+        #welcome-screen {
+            display: block;
+            text-align: center;
+            background: rgba(22, 33, 62, 0.9);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        #welcome-screen::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2MCIgaGVpZ2h0PSI2MCIgb3BhY2l0eT0iMC4wNSI+PHBhdGggZD0iTTAgMGg2MHY2MEgweiIgZmlsbD0ibm9uZSIvPjxjaXJjbGUgY3g9IjMwIiBjeT0iMzAiIHI9IjI1IiBzdHJva2U9IiM0Y2M5ZjAiIHN0cm9rZS13aWR0aD0iMC41IiBmaWxsPSJub25lIi8+PHJlY3QgeD0iMTUiIHk9IjE1IiB3aWR0aD0iMTAiIGhlaWdodD0iMTAiIHN0cm9rZT0iIzRjYzlmMCIgc3Ryb2tlLXdpZHRoPSIwLjUiIGZpbGw9Im5vbmUiLz48cmVjdCB4PSIzNSIgeT0iMzUiIHdpZHRoPSIxMCIgaGVpZ2h0PSIxMCIgc3Ryb2tlPSIjNGNjOWYwIiBzdHJva2Utd2lkdGg9IjAuNSIgZmlsbD0ibm9uZSIvPjwvc3ZnPg==');
+            z-index: -1;
+        }
+        
+        .btn {
+            background: linear-gradient(to bottom, var(--accent), #3a9fc9);
+            color: var(--text);
+            border: none;
+            padding: 12px 25px;
+            margin: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-family: inherit;
+            font-weight: bold;
+            transition: all 0.3s;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+        
+        .btn::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, #3a9fc9, var(--accent));
+            opacity: 0;
+            transition: opacity 0.3s;
+            z-index: -1;
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.4);
+        }
+        
+        .btn:hover::before {
+            opacity: 1;
+        }
+        
+        .btn:active {
+            transform: translateY(1px);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+        
+        .note-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            margin: 20px 0;
+        }
+        
+        .note {
+            background-color: var(--paper);
+            color: #333;
+            padding: 15px;
+            margin: 10px;
+            border-radius: 5px;
+            width: 200px;
+            min-height: 100px;
+            box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2);
+            transform: rotate(-1deg);
+            cursor: pointer;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .note::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(to right, var(--accent), transparent);
+        }
+        
+        .note:hover {
+            transform: rotate(0deg) scale(1.05);
+            box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        .character {
+            text-align: center;
+            margin: 15px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .character:hover {
+            transform: translateY(-5px);
+        }
+        
+        .character-img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--accent);
+            margin-bottom: 10px;
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 3rem;
+            font-weight: bold;
+            color: #333;
+        }
+        
+        .character:hover .character-img {
+            border-color: var(--highlight);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.4);
+        }
+        
+        .dialog-box {
+            background-color: var(--paper);
+            color: #333;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            position: relative;
+            box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2);
+        }
+        
+        .dialog-box::before {
+            content: """;
+            position: absolute;
+            top: -20px;
+            left: 20px;
+            font-size: 60px;
+            color: var(--accent);
+            font-family: Georgia, serif;
+        }
+        
+        .dialog-options {
+            margin-top: 15px;
+        }
+        
+        .dialog-option {
+            display: block;
+            background-color: var(--light-bg);
+            color: var(--text);
+            padding: 10px;
+            margin: 8px 0;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .dialog-option:hover {
+            background-color: var(--accent);
+            padding-left: 15px;
+        }
+        
+        .clue-list {
+            list-style-type: none;
+            padding: 0;
+        }
+        
+        .clue-list li {
+            background-color: rgba(255, 255, 255, 0.1);
+            margin: 8px 0;
+            padding: 12px 15px;
+            border-left: 3px solid var(--accent);
+            border-radius: 3px;
+            transition: all 0.3s;
+            background: linear-gradient(to right, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.1));
+        }
+        
+        .clue-list li:hover {
+            background: linear-gradient(to right, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.15));
+            border-left: 3px solid var(--highlight);
+        }
+        
+        #accuse-screen select, #accuse-screen textarea {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            background-color: rgba(255, 255, 255, 0.1);
+            border: 1px solid var(--accent);
+            color: var(--text);
+            border-radius: 5px;
+            font-family: inherit;
+        }
+        
+        #accuse-screen select:focus, #accuse-screen textarea:focus {
+            outline: none;
+            border-color: var(--highlight);
+            box-shadow: 0 0 5px rgba(255, 209, 102, 0.5);
+        }
+        
+        .progress-bar {
+            height: 10px;
+            background-color: rgba(255, 255, 255, 0.2);
+            border-radius: 5px;
+            margin: 20px 0;
+            overflow: hidden;
+            box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2);
+        }
+        
+        .progress {
+            height: 100%;
+            background: linear-gradient(to right, var(--accent), var(--highlight));
+            width: 0%;
+            transition: width 0.5s;
+        }
+        
+        .result-content {
+            background-color: rgba(0, 0, 0, 0.2);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+        
+        .flashlight {
+            cursor: none;
+            overflow: hidden;
+        }
+        
+        .flashlight::before {
+            content: "";
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, rgba(0,0,0,0.9) 60%);
+            border-radius: 50%;
+            pointer-events: none;
+            transform: translate(-50%, -50%);
+            z-index: 10;
+            mix-blend-mode: difference;
+        }
+        
+        @media (max-width: 768px) {
+            .note {
+                width: 100%;
+                margin: 10px 0;
+            }
+            
+            .character {
+                width: 45%;
+                margin: 10px 0;
+            }
+            
+            .character-img {
+                width: 100px;
+                height: 100px;
+            }
+        }
+        
+        .typewriter {
+            overflow: hidden;
+            border-right: 0.15em solid var(--accent);
+            white-space: nowrap;
+            margin: 0 auto;
+            letter-spacing: 0.15em;
+            animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
+        }
+        
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 100% }
+        }
+        
+        @keyframes blink-caret {
+            from, to { border-color: transparent }
+           50% { border-color: var(--accent) }
+        }
+        
+        .fade-in {
+            animation: fadeIn 1s;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        .tooltip {
+            position: relative;
+            display: inline-block;
+        }
+        
+        .tooltip .tooltiptext {
+            visibility: hidden;
+            width: 120px;
+            background-color: var(--dark-bg);
+            color: var(--text);
+            text-align: center;
+            border-radius: 6px;
+            padding: 5px;
+            position: absolute;
+            z-index: 1;
+            bottom: 125%;
+            left: 50%;
+            margin-left: -60px;
+            opacity: 0;
+            transition: opacity 0.3s;
+            font-size: 0.8rem;
+        }
+        
+        .tooltip:hover .tooltiptext {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        .crime-scene {
+            text-align: center;
+            margin: 20px 0;
+            padding: 15px;
+            background: linear-gradient(to right, rgba(0,0,0,0.3), rgba(0,0,0,0.1));
+            border-radius: 8px;
+            border-left: 3px solid var(--highlight);
+        }
+        
+        .crime-scene img {
+            max-width: 100%;
+            border-radius: 5px;
+            margin-top: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Misteri Pembunuhan di Vila Tua</h1>
+            <p>Sebuah Game Teka-Teki Detektif</p>
+        </header>
+        
+        <!-- Layar Selamat Datang -->
+        <div id="welcome-screen" class="game-screen fade-in">
+            <h2 class="typewriter">Selamat Datang, Detektif</h2>
+            <p>Sir Reginald, seorang industrialis kaya raya, ditemukan tewas di perpustakaan vila keluarganya yang tua. Ia diduga diracun dalam acara makan malam keluarga.</p>
+            <p>Keluarga dan staf sedang berkumpul untuk membaca surat wasiat Sir Reginald, yang rencananya akan dibacakan keesokan harinya.</p>
+            <p>Tugas Anda adalah menyelidiki, mewawancarai para tersangka, mengumpulkan bukti, dan mengungkap pembunuh ini sebelum mereka kabur.</p>
+            <p>Apakah Anda siap untuk tantangan ini?</p>
+            <button id="start-btn" class="btn pulse">Mulai Investigasi</button>
+        </div>
+        
+        <!-- Layar Lokasi -->
+        <div id="location-screen" class="game-screen">
+            <h2>Pilih Lokasi untuk Diselidiki</h2>
+            <div class="note-container">
+                <div class="note" data-location="library">
+                    <h3>Perpustakaan</h3>
+                    <p>Tempat jenazah Sir Reginald ditemukan</p>
+                </div>
+                <div class="note" data-location="dining">
+                    <h3>Ruang Makan</h3>
+                    <p>Tempat makan malam berlangsung</p>
+                </div>
+                <div class="note" data-location="kitchen">
+                    <h3>Dapur</h3>
+                    <p>Tempat makanan dan minuman disiapkan</p>
+                </div>
+                <div class="note" data-location="study">
+                    <h3>Ruang Kerja</h3>
+                    <p>Ruang pribadi Sir Reginald</p>
+                </div>
+            </div>
+            <button id="to-suspects-btn" class="btn">Wawancara Tersangka</button>
+            <button id="to-accuse-btn" class="btn">Buat Kesimpulan</button>
+            <button id="to-clues-btn" class="btn">Lihat Bukti</button>
+        </div>
+        
+        <!-- Layar Tersangka -->
+        <div id="suspects-screen" class="game-screen">
+            <h2>Wawancara Tersangka</h2>
+            <div class="note-container">
+                <div class="character" data-suspect="elena">
+                    <div class="tooltip">
+                        <div class="character-img" style="background-color: #f9c6c7;">E</div>
+                        <span class="tooltiptext">Istri Sir Reginald</span>
+                    </div>
+                    <h3>Lady Elena</h3>
+                    <p>Istri Sir Reginald</p>
+                </div>
+                <div class="character" data-suspect="arthur">
+                    <div class="tooltip">
+                        <div class="character-img" style="background-color: #a7d4f3;">A</div>
+                        <span class="tooltiptext">Putra Tertua</span>
+                    </div>
+                    <h3>Arthur</h3>
+                    <p>Putra Tertua</p>
+                </div>
+                <div class="character" data-suspect="victoria">
+                    <div class="tooltip">
+                        <div class="character-img" style="background-color: #ffd78c;">V</div>
+                        <span class="tooltiptext">Putri Bungsu</span>
+                    </div>
+                    <h3>Victoria</h3>
+                    <p>Putri Bungsu</p>
+                </div>
+                <div class="character" data-suspect="edward">
+                    <div class="tooltip">
+                        <div class="character-img" style="background-color: #ccdf6c;">E</div>
+                        <span class="tooltiptext">Saudara Laki-laki</span>
+                    </div>
+                    <h3>Edward</h3>
+                    <p>Saudara Laki-laki</p>
+                </div>
+            </div>
+            <button id="to-locations-btn" class="btn">Selidiki Lokasi</button>
+            <button id="to-accuse-from-suspects" class="btn">Buat Kesimpulan</button>
+            <button id="to-clues-from-suspects" class="btn">Lihat Bukti</button>
+        </div>
+        
+        <!-- Layar Dialog -->
+        <div id="dialog-screen" class="game-screen">
+            <h2 id="dialog-character-name">Wawancara</h2>
+            <div class="dialog-box">
+                <p id="dialog-text">Halo, Detektif. Ada yang bisa saya bantu?</p>
+                <div class="dialog-options" id="dialog-options">
+                    <!-- Opsi dialog akan dimasukkan di sini oleh JavaScript -->
+                </div>
+            </div>
+            <button id="end-dialog-btn" class="btn">Kembali ke Daftar Tersangka</button>
+        </div>
+        
+        <!-- Layar Investigasi -->
+        <div id="investigate-screen" class="game-screen">
+            <h2 id="location-name">Investigasi Lokasi</h2>
+            <div id="location-description">
+                <p>Anda sedang memeriksa lokasi ini. Apa yang ingin Anda lakukan?</p>
+            </div>
+            <div id="investigation-options">
+                <!-- Opsi investigasi akan dimasukkan di sini oleh JavaScript -->
+            </div>
+            <button id="back-to-locations" class="btn">Kembali ke Daftar Lokasi</button>
+        </div>
+        
+        <!-- Layar Bukti -->
+        <div id="clues-screen" class="game-screen">
+            <h2>Bukti yang Dikumpulkan</h2>
+            <div class="progress-bar">
+                <div class="progress" id="progress-bar"></div>
+            </div>
+            <ul class="clue-list" id="clue-list">
+                <!-- Daftar bukti akan dimasukkan di sini oleh JavaScript -->
+            </ul>
+            <button id="back-from-clues" class="btn">Kembali</button>
+        </div>
+        
+        <!-- Layar Kesimpulan -->
+        <div id="accuse-screen" class="game-screen">
+            <h2>Buat Kesimpulan</h2>
+            <p>Setelah mengumpulkan semua bukti, siapa menurut Anda pelakunya?</p>
+            
+            <label for="suspect-select">Pilih Tersangka:</label>
+            <select id="suspect-select">
+                <option value="">-- Pilih Tersangka --</option>
+                <option value="elena">Lady Elena (Istri)</option>
+                <option value="arthur">Arthur (Putra Tertua)</option>
+                <option value="victoria">Victoria (Putri Bungsu)</option>
+                <option value="edward">Edward (Saudara Laki-laki)</option>
+            </select>
+            
+            <label for="motive-text">Jelaskan Motif:</label>
+            <textarea id="motive-text" rows="4" placeholder="Mengapa dia melakukan pembunuhan?"></textarea>
+            
+            <label for="evidence-text">Jelaskan Bukti:</label>
+            <textarea id="evidence-text" rows="4" placeholder="Bukti apa yang mendukung kesimpulan Anda?"></textarea>
+            
+            <button id="submit-accusation" class="btn">Ajukan Kesimpulan</button>
+            <button id="back-from-accuse" class="btn">Kembali</button>
+        </div>
+        
+        <!-- Layar Hasil -->
+        <div id="result-screen" class="game-screen">
+            <h2 id="result-title">Hasil Investigasi</h2>
+            <div id="result-content" class="result-content">
+                <p>Terima kasih telah menyelesaikan investigasi.</p>
+            </div>
+            <button id="restart-btn" class="btn">Main Lagi</button>
+        </div>
+    </div>
+
+    <script>
+        // Data game
+        const gameData = {
+            currentScreen: 'welcome',
+            previousScreen: 'welcome',
+            collectedClues: [],
+            currentCharacter: null,
+            currentLocation: null,
+            conversationsHad: {
+                elena: false,
+                arthur: false,
+                victoria: false,
+                edward: false
+            },
+            locationsVisited: {
+                library: false,
+                dining: false,
+                kitchen: false,
+                study: false
+            },
+            culprit: 'edward', // Edward adalah pelakunya
+            solution: {
+                motive: "Edward membunuh Sir Reginald karena dendam lama. Sir Reginald telah mengambil alih perusahaan keluarga dan menjadikan Edward hanya sebagai karyawan kecil, padahal perusahaan itu awalnya adalah ide Edward.",
+                evidence: [
+                    "Surat ancaman yang ditemukan di laci meja Edward",
+                    "Resep racun langka yang dicetak dari komputer Edward",
+                    "Sidik jari Edward pada gelas anggur Sir Reginald",
+                    "Pesan teks pada ponsel Edward tentang 'penyelesaian masalah' malam itu"
+                ]
+            },
+            characters: {
+                elena: {
+                    name: "Lady Elena",
+                    relationship: "Istri Sir Reginald",
+                    dialogs: [
+                        {
+                            question: "Bagaimana hubungan Anda dengan almarhum?",
+                            answer: "Kami memiliki pernikahan yang bahagia. Reginald adalah suami yang baik, meskipun dia sering sibuk dengan bisnisnya."
+                        },
+                        {
+                            question: "Di mana Anda saat kejadian?",
+                            answer: "Saya sedang di ruang tamu bersama yang lain setelah makan malam. Reginald pergi ke perpustakaan untuk merokok seperti biasa."
+                        },
+                        {
+                            question: "Apakah Sir Reginald memiliki musuh?",
+                            answer: "Dunia bisnis memang keras, tapi saya tidak tahu ada yang membencinya sampai ingin membunuhnya. Mungkin Edward masih menyimpan dendam..."
+                        }
+                    ]
+                },
+                arthur: {
+                    name: "Arthur",
+                    relationship: "Putra Tertua",
+                    dialogs: [
+                        {
+                            question: "Apa yang Anda lakukan setelah makan malam?",
+                            answer: "Saya pergi ke teras untuk menelepon pacar saya. Ketika kembali, semua sudah heboh tentang ayah."
+                        },
+                        {
+                            question: "Apakah Anda mengetahui isi surat wasiat?",
+                            answer: "Tidak sepenuhnya. Tapi saya dengar ayah akan membagi warisan secara tidak merata. Victoria mungkin akan dapat bagian terbesar."
+                        },
+                        {
+                            question: "Apakah ada konflik dalam keluarga?",
+                            answer: "Paman Edward selalu cemburu pada kesuksesan ayah. Mereka bertengkar hebat minggu lalu tentang bisnis keluarga."
+                        }
+                    ]
+                },
+                victoria: {
+                    name: "Victoria",
+                    relationship: "Putri Bungsu",
+                    dialogs: [
+                        {
+                            question: "Apa hubungan Anda dengan ayah Anda?",
+                            answer: "Ayah adalah orang terbaik di dunia. Dia selalu mendukung impian saya menjadi seniman, tidak seperti kakak saya yang menganggapnya sia-sia."
+                        },
+                        {
+                            question: "Di mana Anda saat kejadian?",
+                            answer: "Saya membantu pelayan membersihkan meja makan, kemudian pergi ke kamar untuk mengambil buku catatan saya."
+                        },
+                        {
+                            question: "Apakah Anda melihat sesuatu yang mencurigakan?",
+                            answer: "Saya melihat Paman Edward memasukkan sesuatu ke dalam saku saat meninggalkan ruang makan. Tapi saya pikir itu hanya saputangan."
+                        }
+                    ]
+                },
+                edward: {
+                    name: "Edward",
+                    relationship: "Saudara Laki-laki",
+                    dialogs: [
+                        {
+                            question: "Bagaimana hubungan Anda dengan almarhum?",
+                            answer: "Reginald adalah saudara saya. Kami memiliki perbedaan pendapat seperti layaknya saudara, tapi tidak ada permusuhan."
+                        },
+                        {
+                            question: "Di mana Anda saat kejadian?",
+                            answer: "Saya pergi ke taman untuk merokok setelah makan malam. Ketika kembali, semua sudah kacau."
+                        },
+                        {
+                            question: "Apakah benar Anda bertengkar dengan Sir Reginald?",
+                            answer: "Itu hanya diskusi bisnis yang agak panas. Dia ingin menjual perusahaan yang telah kami bangun bersama. Tapi tidak sampai ingin membunuhnya!"
+                        }
+                    ]
+                }
+            },
+            locations: {
+                library: {
+                    name: "Perpustakaan",
+                    description: "Ruangan luas berisi rak-rak buku dari lantai ke langit-langit. Ada kursi kulit tempat Sir Reginald ditemukan tewas dan meja kecil dengan gelas anggur.",
+                    clues: [
+                        {
+                            name: "Gelas Anggur",
+                            description: "Gelas anggur dengan sisa cairan. Terlihat ada endapan putih di dasar gelas.",
+                            found: false
+                        },
+                        {
+                            name: "Potongan Kertas",
+                            description: "Sepotong kertas robek dengan tulisan '...jangan paksa aku...' terselip di antara bantal kursi.",
+                            found: false
+                        }
+                    ]
+                },
+                dining: {
+                    name: "Ruang Makan",
+                    description: "Ruangan megah dengan meja makan panjang yang bisa menampung 12 orang. Masih ada sisa makanan dan minuman dari makan malam.",
+                    clues: [
+                        {
+                            name: "Tempat Duduk",
+                            description: "Diagram tempat duduk menunjukkan Sir Reginald duduk di kepala meja, dengan Edward di sebelah kanannya.",
+                            found: false
+                        },
+                        {
+                            name: "Botol Anggur",
+                            description: "Botol anggur mahal yang hampir habis. Labelnya menunjukkan tahun 1985, tahun yang signifikan untuk keluarga ini.",
+                            found: false
+                        }
+                    ]
+                },
+                kitchen: {
+                    name: "Dapur",
+                    description: "Dapur besar dengan peralatan memasak modern. Ada beberapa bahan makanan dan peralatan yang masih bersih.",
+                    clues: [
+                        {
+                            name: "Buku Resep",
+                            description: "Buku resep keluarga dengan halaman tertentu yang sering dibuka. Ada catatan tentang tanaman beracun.",
+                            found: false
+                        },
+                        {
+                            name: "Sampel Makanan",
+                            description: "Sisa makanan yang disimpan untuk diperiksa. Semua tampak normal kecuali hidangan penutup.",
+                            found: false
+                        }
+                    ]
+                },
+                study: {
+                    name: "Ruang Kerja",
+                    description: "Ruang kerja Sir Reginald yang berantakan. Berisi dokumen bisnis, komputer, dan foto keluarga.",
+                    clues: [
+                        {
+                            name: "Surat Wasiat",
+                            description: "Draft surat wasiat terbaru. Edward tidak disebutkan sama sekali, sementara Victoria mendapat bagian terbesar.",
+                            found: false
+                        },
+                        {
+                            name: "Buku Harian",
+                            description: "Buku harian Sir Reginald. Entri terakhir membahas kekhawatirannya tentang Edward.",
+                            found: false
+                        }
+                    ]
+                }
+            }
+        };
+
+        // Elemen DOM
+        const screens = {
+            welcome: document.getElementById('welcome-screen'),
+            location: document.getElementById('location-screen'),
+            suspects: document.getElementById('suspects-screen'),
+            dialog: document.getElementById('dialog-screen'),
+            investigate: document.getElementById('investigate-screen'),
+            clues: document.getElementById('clues-screen'),
+            accuse: document.getElementById('accuse-screen'),
+            result: document.getElementById('result-screen')
+        };
+
+        // Inisialisasi game
+        function initGame() {
+            // Event listeners untuk navigasi
+            document.getElementById('start-btn').addEventListener('click', () => showScreen('location'));
+            
+            document.getElementById('to-suspects-btn').addEventListener('click', () => {
+                gameData.previousScreen = gameData.currentScreen;
+                showScreen('suspects');
+            });
+            
+            document.getElementById('to-accuse-btn').addEventListener('click', () => {
+                gameData.previousScreen = gameData.currentScreen;
+                showScreen('accuse');
+            });
+            
+            document.getElementById('to-clues-btn').addEventListener('click', () => {
+                gameData.previousScreen = gameData.currentScreen;
+                showScreen('clues');
+            });
+            
+            document.getElementById('to-locations-btn').addEventListener('click', () => {
+                gameData.previousScreen = gameData.currentScreen;
+                showScreen('location');
+            });
+            
+            document.getElementById('to-accuse-from-suspects').addEventListener('click', () => {
+                gameData.previousScreen = gameData.currentScreen;
+                showScreen('accuse');
+            });
+            
+            document.getElementById('to-clues-from-suspects').addEventListener('click', () => {
+                gameData.previousScreen = gameData.currentScreen;
+                showScreen('clues');
+            });
+            
+            document.getElementById('back-from-clues').addEventListener('click', () => {
+                showScreen(gameData.previousScreen);
+            });
+            
+            document.getElementById('back-from-accuse').addEventListener('click', () => {
+                showScreen(gameData.previousScreen);
+            });
+            
+            document.getElementById('end-dialog-btn').addEventListener('click', () => showScreen('suspects'));
+            document.getElementById('back-to-locations').addEventListener('click', () => showScreen('location'));
+            document.getElementById('submit-accusation').addEventListener('click', checkAccusation);
+            document.getElementById('restart-btn').addEventListener('click', restartGame);
+            
+            // Event listeners untuk karakter
+            document.querySelectorAll('.character').forEach(el => {
+                el.addEventListener('click', () => {
+                    const suspect = el.getAttribute('data-suspect');
+                    startConversation(suspect);
+                });
+            });
+            
+            // Event listeners untuk lokasi
+            document.querySelectorAll('.note[data-location]').forEach(el => {
+                el.addEventListener('click', () => {
+                    const location = el.getAttribute('data-location');
+                    investigateLocation(location);
+                });
+            });
+            
+            // Perbarui progress bar
+            updateProgressBar();
+        }
+
+        // Tampilkan layar tertentu
+        function showScreen(screenName) {
+            // Sembunyikan semua layar
+            Object.values(screens).forEach(screen => {
+                screen.style.display = 'none';
+            });
+            
+            // Tampilkan layar yang diminta
+            screens[screenName].style.display = 'block';
+            gameData.currentScreen = screenName;
+            
+            // Jika layar bukti, perbarui daftar bukti
+            if (screenName === 'clues') {
+                updateCluesList();
+            }
+        }
+
+        // Mulai percakapan dengan karakter
+        function startConversation(suspectId) {
+            gameData.currentCharacter = suspectId;
+            const character = gameData.characters[suspectId];
+            
+            // Set nama karakter di dialog
+            document.getElementById('dialog-character-name').textContent = `Wawancara dengan ${character.name}`;
+            
+            // Kosongkan opsi dialog
+            const optionsContainer = document.getElementById('dialog-options');
+            optionsContainer.innerHTML = '';
+            
+            // Tambahkan opsi dialog
+            character.dialogs.forEach(dialog => {
+                const optionEl = document.createElement('div');
+                optionEl.className = 'dialog-option';
+                optionEl.textContent = dialog.question;
+                optionEl.addEventListener('click', () => {
+                    document.getElementById('dialog-text').textContent = dialog.answer;
+                    
+                    // Jika ini pertama kalinya berbicara dengan karakter ini, dapatkan petunjuk
+                    if (!gameData.conversationsHad[suspectId]) {
+                        gameData.conversationsHad[suspectId] = true;
+                        
+                        // Berikan petunjuk khusus berdasarkan karakter
+                        let newClue = '';
+                        if (suspectId === 'elena') {
+                            newClue = 'Lady Elena menyebutkan bahwa Edward mungkin menyimpan dendam';
+                        } else if (suspectId === 'arthur') {
+                            newClue = 'Arthur mengungkapkan pertengkaran antara Edward dan Sir Reginald';
+                        } else if (suspectId === 'victoria') {
+                            newClue = 'Victoria melihat Edward memasukkan sesuatu ke saku setelah makan malam';
+                        }
+                        
+                        if (newClue && !gameData.collectedClues.includes(newClue)) {
+                            gameData.collectedClues.push(newClue);
+                            updateProgressBar();
+                        }
+                    }
+                });
+                
+                optionsContainer.appendChild(optionEl);
+            });
+            
+            showScreen('dialog');
+        }
+
+        // Investigasi lokasi
+        function investigateLocation(locationId) {
+            gameData.currentLocation = locationId;
+            const location = gameData.locations[locationId];
+            
+            // Set nama lokasi
+            document.getElementById('location-name').textContent = `Menyelidiki: ${location.name}`;
+            
+            // Set deskripsi lokasi
+            document.getElementById('location-description').innerHTML = `<p>${location.description}</p>`;
+            
+            // Kosongkan opsi investigasi
+            const optionsContainer = document.getElementById('investigation-options');
+            optionsContainer.innerHTML = '';
+            
+            // Tambahkan opsi investigasi berdasarkan petunjuk yang tersedia
+            location.clues.forEach((clue, index) => {
+                if (!clue.found) {
+                    const optionEl = document.createElement('div');
+                    optionEl.className = 'dialog-option';
+                    optionEl.textContent = `Periksa: ${clue.name}`;
+                    optionEl.addEventListener('click', () => {
+                        // Tandai petunjuk sebagai ditemukan
+                        gameData.locations[locationId].clues[index].found = true;
+                        
+                        // Tambahkan ke koleksi petunjuk
+                        gameData.collectedClues.push(`${clue.name}: ${clue.description}`);
+                        
+                        // Perbarui UI
+                        updateProgressBar();
+                        optionEl.style.display = 'none';
+                        
+                        // Tandai lokasi telah dikunjungi
+                        gameData.locationsVisited[locationId] = true;
+                    });
+                    
+                    optionsContainer.appendChild(optionEl);
+                }
+            });
+            
+            showScreen('investigate');
+        }
+
+        // Perbarui daftar bukti
+        function updateCluesList() {
+            const cluesList = document.getElementById('clue-list');
+            cluesList.innerHTML = '';
+            
+            gameData.collectedClues.forEach(clue => {
+                const li = document.createElement('li');
+                li.textContent = clue;
+                cluesList.appendChild(li);
+            });
+        }
+
+        // Perbarui progress bar
+        function updateProgressBar() {
+            const totalClues = 12; // Total semua petunjuk yang mungkin
+            const progress = (gameData.collectedClues.length / totalClues) * 100;
+            document.getElementById('progress-bar').style.width = `${progress}%`;
+        }
+
+        // Periksa kesimpulan pemain
+        function checkAccusation() {
+            const selectedSuspect = document.getElementById('suspect-select').value;
+            const motive = document.getElementById('motive-text').value;
+            const evidence = document.getElementById('evidence-text').value;
+            
+            if (!selectedSuspect || !motive || !evidence) {
+                alert('Harap isi semua field sebelum mengajukan kesimpulan!');
+                return;
+            }
+            
+            // Tampilkan layar hasil
+            showScreen('result');
+            
+            if (selectedSuspect === gameData.culprit) {
+                document.getElementById('result-title').textContent = 'Selamat! Kasus Terpecahkan';
+                document.getElementById('result-content').innerHTML = `
+                    <p>Anda benar! ${gameData.characters[gameData.culprit].name} adalah pembunuhnya.</p>
+                    <p><strong>Motif:</strong> ${gameData.solution.motive}</p>
+                    <p><strong>Bukti-bukti:</strong></p>
+                    <ul>
+                        ${gameData.solution.evidence.map(ev => `<li>${ev}</li>`).join('')}
+                    </ul>
+                    <p>Anda berhasil mengumpulkan ${gameData.collectedClues.length} dari 12 bukti yang mungkin.</p>
+                `;
+            } else {
+                document.getElementById('result-title').textContent = 'Kesimpulan Salah';
+                document.getElementById('result-content').innerHTML = `
+                    <p>Maaf, kesimpulan Anda salah. ${gameData.characters[selectedSuspect].name} bukan pembunuhnya.</p>
+                    <p>Silakan main lagi dan periksa bukti-bukti dengan lebih cermat.</p>
+                    <p>Anda mengumpulkan ${gameData.collectedClues.length} dari 12 bukti yang mungkin.</p>
+                `;
+            }
+        }
+
+        // Mulai ulang game
+        function restartGame() {
+            // Reset semua data game
+            gameData.collectedClues = [];
+            gameData.currentCharacter = null;
+            gameData.currentLocation = null;
+            
+            // Reset semua percakapan
+            for (let key in gameData.conversationsHad) {
+                gameData.conversationsHad[key] = false;
+            }
+            
+            // Reset semua kunjungan lokasi
+            for (let key in gameData.locationsVisited) {
+                gameData.locationsVisited[key] = false;
+            }
+            
+            // Reset semua petunjuk di lokasi
+            for (let location in gameData.locations) {
+                gameData.locations[location].clues.forEach(clue => {
+                    clue.found = false;
+                });
+            }
+            
+            // Reset form kesimpulan
+            document.getElementById('suspect-select').value = '';
+            document.getElementById('motive-text').value = '';
+            document.getElementById('evidence-text').value = '';
+            
+            // Kembali ke layar welcome
+            showScreen('welcome');
+            
+            // Perbarui progress bar
+            updateProgressBar();
+        }
+
+        // Inisialisasi game ketika halaman dimuat
+        window.addEventListener('DOMContentLoaded', initGame);
+    </script>
+</body>
+</html>
