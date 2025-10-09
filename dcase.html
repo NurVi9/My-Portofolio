@@ -1,0 +1,1060 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detektif Case - Koleksi Chapter</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --dark-bg: #121212;
+            --medium-bg: #1e1e1e;
+            --light-bg: #2d2d2d;
+            --accent: #e94560;
+            --accent-light: #ff6b81;
+            --accent-dark: #c62e4a;
+            --text: #f5f5f5;
+            --text-secondary: rgba(245, 245, 245, 0.7);
+            --card-bg: rgba(255, 255, 255, 0.05);
+            --card-hover: rgba(255, 255, 255, 0.08);
+            --glass-bg: rgba(255, 255, 255, 0.08);
+            --glass-border: rgba(255, 255, 255, 0.12);
+            --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.36);
+            --shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+            --transition: all 0.3s ease;
+            --border-radius: 16px;
+        }
+        
+        .light-mode {
+            --dark-bg: #f8f9fa;
+            --medium-bg: #e9ecef;
+            --light-bg: #dee2e6;
+            --accent: #e94560;
+            --accent-light: #ff6b81;
+            --accent-dark: #c62e4a;
+            --text: #212529;
+            --text-secondary: rgba(33, 37, 41, 0.7);
+            --card-bg: rgba(255, 255, 255, 0.8);
+            --card-hover: rgba(255, 255, 255, 0.9);
+            --glass-bg: rgba(255, 255, 255, 0.7);
+            --glass-border: rgba(255, 255, 255, 0.2);
+            --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.1);
+            --shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: var(--dark-bg);
+            color: var(--text);
+            line-height: 1.6;
+            background-image: 
+                radial-gradient(circle at 15% 50%, rgba(29, 53, 87, 0.15) 0%, transparent 25%),
+                radial-gradient(circle at 85% 30%, rgba(69, 123, 157, 0.1) 0%, transparent 25%);
+            min-height: 100vh;
+            transition: var(--transition);
+            overflow-x: hidden;
+        }
+        
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320'%3E%3Cpath fill='%23e94560' fill-opacity='0.05' d='M0,128L48,117.3C96,107,192,85,288,112C384,139,480,213,576,218.7C672,224,768,160,864,138.7C960,117,1056,139,1152,149.3C1248,160,1344,160,1392,160L1440,160L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z'%3E%3C/path%3E%3C/svg%3E") no-repeat bottom center/cover;
+            z-index: -1;
+        }
+        
+        .container {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header Styles */
+        header {
+            background: var(--glass-bg);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border-bottom: 1px solid var(--glass-border);
+            padding: 15px 0;
+            box-shadow: var(--glass-shadow);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            transition: var(--transition);
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .logo-icon {
+            font-size: 2.2rem;
+            color: var(--accent);
+            transition: var(--transition);
+        }
+        
+        .logo h1 {
+            font-size: 1.8rem;
+            font-weight: 800;
+            background: linear-gradient(45deg, var(--accent), var(--accent-light));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            transition: var(--transition);
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+        
+        nav a {
+            color: var(--text);
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+            position: relative;
+            padding: 8px 0;
+        }
+        
+        nav a:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            transition: var(--transition);
+        }
+        
+        nav a:hover {
+            color: var(--accent);
+        }
+        
+        nav a:hover:after {
+            width: 100%;
+        }
+        
+        .theme-toggle {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            color: var(--text);
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: var(--transition);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+        
+        .theme-toggle:hover {
+            background: var(--accent);
+            color: white;
+            transform: rotate(30deg);
+        }
+        
+        /* Hero Section */
+        .hero {
+            padding: 140px 0 100px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at center, transparent 30%, var(--medium-bg) 70%);
+            opacity: 0.3;
+            transform: rotate(0deg);
+            transition: transform 20s linear infinite;
+            z-index: -1;
+        }
+        
+        .hero-content {
+            max-width: 850px;
+            margin: 0 auto;
+            position: relative;
+        }
+        
+        .hero h2 {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            font-weight: 800;
+            background: linear-gradient(45deg, var(--text), var(--accent-light));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: fadeInUp 0.8s ease-out;
+            line-height: 1.1;
+        }
+        
+        .hero p {
+            font-size: 1.3rem;
+            margin: 0 auto 40px;
+            color: var(--text-secondary);
+            max-width: 700px;
+            animation: fadeInUp 0.8s ease-out 0.2s forwards;
+            opacity: 0;
+        }
+        
+        .hero-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            animation: fadeInUp 0.8s ease-out 0.4s forwards;
+            opacity: 0;
+        }
+        
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 14px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+            color: var(--text);
+            font-size: 1rem;
+        }
+        
+        .btn-primary {
+            background: var(--accent);
+            color: white;
+            border: 1px solid var(--accent);
+        }
+        
+        .btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 25px rgba(0, 0, 0, 0.3);
+        }
+        
+        .btn-primary:hover {
+            background: var(--accent-light);
+            transform: translateY(-5px) scale(1.05);
+        }
+        
+        /* Games Grid */
+        .games-section {
+            padding: 100px 0;
+            position: relative;
+        }
+        
+        .games-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23e94560' fill-opacity='0.05' fill-rule='evenodd'/%3E%3C/svg%3E");
+            opacity: 0.5;
+            z-index: -1;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 70px;
+            font-size: 2.8rem;
+            position: relative;
+            display: inline-block;
+            left: 50%;
+            transform: translateX(-50%);
+            font-weight: 800;
+        }
+        
+        .section-title:after {
+            content: '';
+            position: absolute;
+            bottom: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 5px;
+            background: var(--accent);
+            border-radius: 3px;
+        }
+        
+        .games-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 40px;
+        }
+        
+        .game-card {
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            transition: var(--transition);
+            box-shadow: var(--shadow);
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            border: 1px solid var(--glass-border);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            transform: translateY(0);
+            position: relative;
+        }
+        
+        .game-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(120deg, rgba(255,255,255,0.1), rgba(255,255,255,0.05));
+            opacity: 0;
+            transition: var(--transition);
+            z-index: 1;
+        }
+        
+        .game-card:hover {
+            transform: translateY(-12px);
+            box-shadow: 0 25px 40px rgba(0, 0, 0, 0.4);
+            background: var(--card-hover);
+        }
+        
+        .game-card:hover::before {
+            opacity: 1;
+        }
+        
+        .game-image {
+            height: 220px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .game-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.7s ease;
+        }
+        
+        .game-card:hover .game-image img {
+            transform: scale(1.1);
+        }
+        
+        .chapter-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: var(--accent);
+            color: white;
+            padding: 8px 18px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            z-index: 2;
+            box-shadow: 0 4px 10px rgba(233, 69, 96, 0.3);
+        }
+        
+        .coming-soon-badge {
+            background: linear-gradient(45deg, #666, #999);
+        }
+        
+        .game-content {
+            padding: 25px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .game-title {
+            font-size: 1.6rem;
+            margin-bottom: 15px;
+            color: var(--text);
+            font-weight: 700;
+            line-height: 1.3;
+        }
+        
+        .game-description {
+            margin-bottom: 20px;
+            color: var(--text-secondary);
+            flex-grow: 1;
+            line-height: 1.7;
+        }
+        
+        .game-features {
+            margin-bottom: 25px;
+        }
+        
+        .feature {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+        }
+        
+        .feature i {
+            margin-right: 12px;
+            color: var(--accent);
+            width: 20px;
+            text-align: center;
+        }
+        
+        .play-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            background: var(--accent);
+            color: white;
+            padding: 15px 25px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+            text-align: center;
+            border: none;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            font-size: 1rem;
+        }
+        
+        .play-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: 0.5s;
+        }
+        
+        .play-btn:hover {
+            background: var(--accent-light);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(233, 69, 96, 0.3);
+        }
+        
+        .play-btn:hover::before {
+            left: 100%;
+        }
+        
+        .play-btn.coming-soon {
+            background: #666;
+            cursor: not-allowed;
+        }
+        
+        .play-btn.coming-soon:hover {
+            background: #666;
+            transform: none;
+            box-shadow: none;
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--medium-bg);
+            padding: 80px 0 40px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320'%3E%3Cpath fill='%23e94560' fill-opacity='0.05' d='M0,160L48,138.7C96,117,192,75,288,64C384,53,480,75,576,106.7C672,139,768,181,864,181.3C960,181,1056,139,1152,122.7C1248,107,1344,117,1392,122.7L1440,128L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z'%3E%3C/path%3E%3C/svg%3E") no-repeat bottom center/cover;
+        }
+        
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .footer-logo {
+            margin-bottom: 30px;
+        }
+        
+        .footer-logo h2 {
+            font-size: 2rem;
+            font-weight: 800;
+            background: linear-gradient(45deg, var(--accent), var(--accent-light));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+        
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            background: var(--glass-bg);
+            color: var(--text);
+            border-radius: 50%;
+            font-size: 1.3rem;
+            transition: var(--transition);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+        }
+        
+        .social-links a:hover {
+            background: var(--accent);
+            color: white;
+            transform: translateY(-5px);
+        }
+        
+        .copyright {
+            color: var(--text-secondary);
+            font-size: 1rem;
+        }
+        
+        /* Back to top button */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 55px;
+            height: 55px;
+            background: var(--accent);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            cursor: pointer;
+            transition: var(--transition);
+            opacity: 0;
+            visibility: hidden;
+            z-index: 99;
+        }
+        
+        .back-to-top.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .back-to-top:hover {
+            background: var(--accent-light);
+            transform: translateY(-5px);
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 1200px) {
+            .games-grid {
+                grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            }
+        }
+        
+        @media (max-width: 992px) {
+            .hero h2 {
+                font-size: 3.2rem;
+            }
+            
+            .section-title {
+                font-size: 2.5rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            nav ul {
+                gap: 15px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .hero {
+                padding: 120px 0 80px;
+            }
+            
+            .hero h2 {
+                font-size: 2.5rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .games-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .game-card {
+                max-width: 450px;
+                margin: 0 auto;
+            }
+            
+            .theme-toggle {
+                position: absolute;
+                top: 15px;
+                right: 15px;
+            }
+            
+            .section-title {
+                font-size: 2.2rem;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .hero h2 {
+                font-size: 2rem;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
+            }
+            
+            .game-card {
+                max-width: 100%;
+            }
+        }
+        
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes fadeInUp {
+            from { 
+                opacity: 0; 
+                transform: translateY(30px); 
+            }
+            to { 
+                opacity: 1; 
+                transform: translateY(0); 
+            }
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        .animate {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+        
+        .animate.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .delay-1 {
+            transition-delay: 0.1s;
+        }
+        
+        .delay-2 {
+            transition-delay: 0.2s;
+        }
+        
+        .delay-3 {
+            transition-delay: 0.3s;
+        }
+        
+        .delay-4 {
+            transition-delay: 0.4s;
+        }
+        
+        .delay-5 {
+            transition-delay: 0.5s;
+        }
+        
+        .delay-6 {
+            transition-delay: 0.6s;
+        }
+        
+        .floating {
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        /* Progress bar */
+        .progress-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: transparent;
+            z-index: 1001;
+        }
+        
+        .progress-bar {
+            height: 4px;
+            background: var(--accent);
+            width: 0%;
+            transition: width 0.1s ease;
+        }
+    </style>
+</head>
+<body>
+    <div class="progress-container">
+        <div class="progress-bar" id="progress-bar"></div>
+    </div>
+    
+    <header>
+        <div class="container header-content">
+            <div class="logo">
+                <div class="logo-icon">
+                    <i class="fas fa-search"></i>
+                </div>
+                <h1>Detektif Case</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#home">Beranda</a></li>
+                    <li><a href="#games">Chapter</a></li>
+                    <li><a href="#about">Tentang</a></li>
+                </ul>
+            </nav>
+            <div class="theme-toggle" id="theme-toggle">
+                <i class="fas fa-moon"></i>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero" id="home">
+        <div class="container hero-content">
+            <h2>Selamat Datang, Detektif</h2>
+            <p>Jelajahi berbagai kasus misteri yang menantang dan uji kemampuan deduksimu. Setiap chapter menawarkan cerita unik dengan teka-teki yang harus kamu pecahkan.</p>
+            <div class="hero-buttons">
+                <a href="#games" class="btn btn-primary"><i class="fas fa-play-circle"></i> Mulai Investigasi</a>
+                <a href="#about" class="btn"><i class="fas fa-info-circle"></i> Tentang Game</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="games-section" id="games">
+        <div class="container">
+            <h2 class="section-title">Chapter Game</h2>
+            <div class="games-grid">
+                <!-- Chapter 1 -->
+                <div class="game-card animate">
+                    <div class="game-image">
+                        <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MDAiIGhlaWdodD0iMjAwIiB2aWV3Qm94PSIwIDAgNDAwIDIwMCI+PHJlY3Qgd2lkdGg9IjQwMCIgaGVpZ2h0PSIyMDAiIGZpbGw9IiMxNjIxM2UiLz48Y2lyY2xlIGN4PSIxMjAiIGN5PSIxMDAiIHI9IjUwIiBmaWxsPSIjNGNjOWYwIiBvcGFjaXR5PSIwLjciLz48Y2lyY2xlIGN4PSIyODAiIGN5PSIxMDAiIHI9IjUwIiBmaWxsPSIjNGNjOWYwIiBvcGFjaXR5PSIwLjciLz48cGF0aCBkPSJNMTIwIDUwIEMxMjAgNTAgMTIwIDE1MCAxMjAgMTUwIiBzdHJva2U9IiNmZmYiIHN0cm9rZS13aWR0aD0iMyIgZmlsbD0ibm9uZSIvPjxwYXRoIGQ9Ik0xMjAgMTUwIEMxMjAgMTUwIDE4MCAxMDAgMTgwIDEwMCIgc3Ryb2tlPSIjZmZmIiBzdHJva2Utd2lkdGg9IjMiIGZpbGw9Im5vbmUiLz48cGF0aCBkPSJNMjgwIDUwIEMyODAgNTAgMjgwIDE1MCAyODAgMTUwIiBzdHJva2U9IiNmZmYiIHN0cm9rZS13aWR0aD0iMyIgZmlsbD0ibm9uZSIvPjxwYXRoIGQ9Ik0yODAgMTUwIEMyODAgMTUwIDIyMCAxMDAgMjIwIDEwMCIgc3Ryb2tlPSIjZmZmIiBzdHJva2Utd2lkdGg9IjMiIGZpbGw9Im5vbmUiLz48dGV4dCB4PSIyMDAiIHk9IjE4MCIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE0IiBmaWxsPSIjZmZmIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5NdXNldW0gTWlzdGVyeTwvdGV4dD48L3N2Zz4=" alt="Misteri Pencurian Museum">
+                        <div class="chapter-badge">Chapter 1</div>
+                    </div>
+                    <div class="game-content">
+                        <h3 class="game-title">Misteri Pencurian Museum</h3>
+                        <p class="game-description">Seorang pencuri telah mengambil artefak berharga dari museum. Selidiki TKP, wawancarai para tersangka, dan pecahkan kasus pencurian ini.</p>
+                        <div class="game-features">
+                            <div class="feature"><i class="fas fa-user"></i> 4 Tersangka</div>
+                            <div class="feature"><i class="fas fa-search"></i> 4 Lokasi Investigasi</div>
+                            <div class="feature"><i class="fas fa-puzzle-piece"></i> Teka-teki Logika</div>
+                        </div>
+                        <a href="/d-case/kasus2.html" class="play-btn"><i class="fas fa-play"></i> Mainkan Chapter</a>
+                    </div>
+                </div>
+                
+                <!-- Chapter 2 -->
+                <div class="game-card animate delay-1">
+                    <div class="game-image">
+                        <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MDAiIGhlaWdodD0iMjAwIiB2aWV3Qm94PSIwIDAgNDAwIDIwMCI+PHJlY3Qgd2lkdGg9IjQwMCIgaGVpZ2h0PSIyMDAiIGZpbGw9IiMxNjIxM2UiLz48cGF0aCBkPSJNMTUwLDUwIEwyNTAsNTAgTDI3NSwxMDAgTDI1MCwxNTAgTDE1MCwxNTAgTDEyNSwxMDAgWiIgZmlsbD0iI2U5NDU2MCIgb3BhY2l0eT0iMC43Ii8+PHJlY3QgeD0iMTc1IiB5PSI4MCIgd2lkdGg9IjUwIiBoZWlnaHQ9IjQwIiBmaWxsPSIjMzMzIi8+PHBhdGggZD0iTTE1MCw1MCBMMTUwLDE1MCIgc3Ryb2tlPSIjZmZmIiBzdHJva2Utd2lkdGg9IjIiIGZpbGw9Im5vbmUiLz48cGF0aCBkPSJNMjUwLDUwIEwyNTAsMTUwIiBzdHJva2U9IiNmZmYiIHN0cm9rZS13aWR0aD0iMiIgZmlsbD0ibm9uZSIvPjx0ZXh0IHg9IjIwMCIgeT0iMTgwIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTQiIGZpbGw9IiNmZmYiIHRleHQtYW5jaG9yPSJtaWRkbGUiPk1hbnNpb24gTXlzdGVyeTwvdGV4dD48L3N2Zz4=" alt="Misteri Mansion">
+                        <div class="chapter-badge">Chapter 2</div>
+                    </div>
+                    <div class="game-content">
+                        <h3 class="game-title">Misteri Mansion</h3>
+                        <p class="game-description">Seorang hartawan ditemukan tewas di mansion-nya. Selidiki setiap sudut mansion, kumpulkan bukti, dan temukan pembunuhnya.</p>
+                        <div class="game-features">
+                            <div class="feature"><i class="fas fa-user"></i> 4 Tersangka</div>
+                            <div class="feature"><i class="fas fa-search"></i> 4 Lokasi Investigasi</div>
+                            <div class="feature"><i class="fas fa-puzzle-piece"></i> Teka-teki Logika</div>
+                        </div>
+                        <a href="/d-case/kasus.html" class="play-btn"><i class="fas fa-play"></i> Mainkan Chapter</a>
+                    </div>
+                </div>
+                
+                <!-- Chapter 3 -->
+                <div class="game-card animate delay-2">
+                    <div class="game-image">
+                        <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MDAiIGhlaWdodD0iMjAwIiB2aWV3Qm94PSIwIDAgNDAwIDIwMCI+PHJlY3Qgd2lkdGg9IjQwMCIgaGVpZ2h0PSIyMDAiIGZpbGw9IiMxNjIxM2UiLz48cmVjdCB4PSI1MCIgeT0iNTAiIHdpZHRoPSIzMDAiIGhlaWdodD0iMTAwIiByeD0iMTAiIGZpbGw9IiMwZjM0NjAiIG9wYWNpdHk9IjAuNyIvPjxjaXJjbGUgY3g9IjEwMCIgY3k9IjEwMCIgcj0iMjAiIGZpbGw9IiNmZmYiLz48Y2lyY2xlIGN4PSIzMDAiIGN5PSIxMDAiIHI9IjIwIiBmaWxsPSIjZmZmIi8+PHBhdGggZD0iTTEwMCAxMDAgTDMwMCAxMDAiIHN0cm9rZT0iI2ZmZiIgc3Ryb2tlLXdpZHRoPSIzIiBmaWxsPSJub25lIi8+PHRleHQgeD0iMjAwIiB5PSIxODAiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNCIgZmlsbD0iI2ZmZiIgdGV4dC1hbmNob3I9Im1pZGRsZSI+S2FwYWwgUGVzaWFyPC90ZXh0Pjwvc3ZnPg==" alt="Kapal Pesiar">
+                        <div class="chapter-badge">Chapter 3</div>
+                    </div>
+                    <div class="game-content">
+                        <h3 class="game-title">Pencurian Di Kapal Pesiar</h3>
+                        <p class="game-description">Kalung seorang miliarder yang berharga telah dicuri. Selidiki setiap lokasi, kumpulkan bukti, dan wawancarai setiap tersangka.</p>
+                        <div class="game-features">
+                            <div class="feature"><i class="fas fa-user"></i> 4 Tersangka</div>
+                            <div class="feature"><i class="fas fa-search"></i> 4 Lokasi Investigasi</div>
+                            <div class="feature"><i class="fas fa-puzzle-piece"></i> Teka-teki Logika</div>
+                        </div>
+                        <a href="/d-case/kasus3.html" class="play-btn"><i class="fas fa-play"></i> Mainkan Chapter</a>
+                    </div>
+                </div>
+                
+                <!-- Chapter 4 -->
+                <div class="game-card animate delay-3">
+                    <div class="game-image">
+                        <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MDAiIGhlaWdodD0iMjAwIiB2aWV3Qm94PSIwIDAgNDAwIDIwMCI+PHJlY3Qgd2lkdGg9IjQwMCIgaGVpZ2h0PSIyMDAiIGZpbGw9IiMxNjIxM2UiLz48cGF0aCBkPSJNNTAgMTUwIEM1MCAxNTAgMTUwIDE1MCAxNTAgMTUwIEMxNTAgMTUwIDE1MCA1MCAxNTAgNTAgQzE1MCA1MCAyNTAgNTAgMjUwIDUwIEMyNTAgNTAgMzUwIDEwMCAzNTAgMTAwIEMzNTAgMTAwIDM1MCAxNTAgMzUwIDE1MCBDMzUwIDE1MCAyNTAgMTUwIDI1MCAxNTAiIHN0cm9rZT0iI2U5NDU2MCIgc3Ryb2tlLXdpZHRoPSIzIiBmaWxsPSJub25lIi8+PHBhdGggZD0iTTEwMCAxMDAgQzEwMCAxMDAgMTUwIDUwIDE1MCA1MCIgc3Ryb2tlPSIjZmZmIiBzdHJva2Utd2lkdGg9IjIiIGZpbGw9Im5vbmUiLz48cGF0aCBkPSJNMzAwIDEwMCBDMzAwIDEwMCAyNTAgNTAgMjUwIDUwIiBzdHJva2U9IiNmZmYiIHN0cm9rZS13aWR0aD0iMiIgZmlsbD0ibm9uZSIvPjx0ZXh0IHg9IjIwMCIgeT0iMTgwIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTQiIGZpbGw9IiNmZmYiIHRleHQtYW5jaG9yPSJtaWRkbGUiPktlcmV0YSBBcGk8L3RleHQ+PC9zdmc+" alt="Villa Tua">
+                        <div class="chapter-badge">Chapter 4</div>
+                    </div>
+                    <div class="game-content">
+                        <h3 class="game-title">Pembunuhan Di Villa Tua</h3>
+                        <p class="game-description">Sebuah kejadian terjadi di villa tua lalu malam itu berubah menjadi mimpi buruk ketika seorang ditemukan tewas. Cari tahu apa yang terjadi di antara penumpang yang terisolasi.</p>
+                        <div class="game-features">
+                            <div class="feature"><i class="fas fa-user"></i> 4 Tersangka</div>
+                            <div class="feature"><i class="fas fa-search"></i> 4 Lokasi Investigasi</div>
+                            <div class="feature"><i class="fas fa-puzzle-piece"></i> Teka-teki Logika</div>
+                        </div>
+                        <a href="/d-case/kasus4.html" class="play-btn"><i class="fas fa-play"></i> Mainkan Chapter</a>
+                    </div>
+                </div>
+                
+                <!-- Chapter 5 -->
+                <div class="game-card animate delay-4">
+                    <div class="game-image">
+                        <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MDAiIGhlaWdodD0iMjAwIiB2aWV3Qm94PSIwIDAgNDAwIDIwMCI+PHJlY3Qgd2lkdGg9IjQwMCIgaGVpZ2h0PSIyMDAiIGZpbGw9IiMxNjIxM2UiLz48cGF0aCBkPSJNNTAgMTAwIEM1MCAxMDAgMTAwIDUwIDEwMCA1MCBDMTAwIDUwIDMwMCA1MCAzMDAgNTAgQzMwMCA1MCAzNTAgMTAwIDM1MCAxMDAgQzM1MCAxMDAgMzAwIDE1MCAzMDAgMTUwIEMzMDAgMTUwIDEwMCAxNTAgMTAwIDE1MCBDMTAwIDE1MCA1MCAxMDAgNTAgMTAwIiBmaWxsPSIjMGYzNDYwIiBvcGFjaXR5PSIwLjciLz48cGF0aCBkPSJNMTUwIDUwIEwxNTAgMTUwIiBzdHJva2U9IiNmZmYiIHN0cm9rZS13aWR0aD0iMiIgZmlsbD0ibm9uZSIvPjxwYXRoIGQ9Ik0yNTAgNTAgTDI1MCAxNTAiIHN0cm9rZT0iI2ZmZiIgc3Ryb2tlLXdpZHRoPSIyIiBmaWxsPSJub25lIi8+PHRleHQgeD0iMjAwIiB5PSIxODAiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNCIgZmlsbD0iI2ZmZiIgdGV4dC1hbmNob3I9Im1pZGRsZSI+SG90ZWwgTWV3YWg8L3RleHQ+PC9zdmc+" alt="Museum Seni">
+                        <div class="chapter-badge">Chapter 5</div>
+                    </div>
+                    <div class="game-content">
+                        <h3 class="game-title">Pencurian Di Museum Seni</h3>
+                        <p class="game-description">Seorang telah mencuri mahakarya langka dari museum seni nasiola. Jelajahi setiap tempat, wawancarai tersangka, dan temukan kebenaran di balik pencurian lukisan tersebut.</p>
+                        <div class="game-features">
+                            <div class="feature"><i class="fas fa-user"></i> 4 Tersangka</div>
+                            <div class="feature"><i class="fas fa-search"></i> 4 Lokasi Investigasi</div>
+                            <div class="feature"><i class="fas fa-puzzle-piece"></i> Teka-teki Logika</div>
+                        </div>
+                        <a href="/d-case/kasus5.html" class="play-btn"><i class="fas fa-play"></i> Mainkan Chapter</a>
+                    </div>
+                </div>
+                
+                <!-- Chapter 6 -->
+                <div class="game-card animate delay-5">
+                    <div class="game-image">
+                        <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MDAiIGhlaWdodD0iMjAwIiB2aWV3Qm94PSIwIDAgNDAwIDIwMCI+PHJlY3Qgd2lkdGg9IjQwMCIgaGVpZ2h0PSIyMDAiIGZpbGw9IiMxNjIxM2UiLz48cGF0aCBkPSJNNTAgMTAwIEM1MCAxMDAgMTAwIDE1MCAxMDAgMTUwIEMxMDAgMTUwIDMwMCAxNTAgMzAwIDE1MCBDMzAwIDE1MCAzNTAgMTAwIDM1MCAxMDAgQzM1MCAxMDAgMzAwIDUwIDMwMCA1MCBDMzAwIDUwIDEwMCA1MCAxMDAgNTAgQzEwMCA1MCA1MCAxMDAgNTAgMTAwIiBmaWxsPSIjZTk0NTYwIiBvcGFjaXR5PSIwLjciLz48Y2lyY2xlIGN4PSIyMDAiIGN5PSIxMDAiIHI9IjMwIiBmaWxsPSIjZmZmIi8+PHRleHQgeD0iMjAwIiB5PSIxODAiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNCIgZmlsbD0iI2ZmZiIgdGV4dC1hbmNob3I9Im1pZGRsZSI+TGFib3JhdG9yaXVtPC90ZXh0Pjwvc3ZnPg==" alt="Kereta Api">
+                        <div class="chapter-badge">Chapter 6</div>
+                    </div>
+                    <div class="game-content">
+                        <h3 class="game-title">Kereta Api Ekspres</h3>
+                        <p class="game-description">Sebuah pembunuhan telah terjadi di sebuah kereta api ekspres. Selidiki para tersangka, temukan motif tersembunyi, dan ungkap pembunuh tersebut.</p>
+                        <div class="game-features">
+                            <div class="feature"><i class="fas fa-user"></i> 4 Tersangka</div>
+                            <div class="feature"><i class="fas fa-search"></i> 4 Lokasi Investigasi</div>
+                            <div class="feature"><i class="fas fa-puzzle-piece"></i> Teka-teki Logika</div>
+                        </div>
+                        <a href="/d-case/kasus6.html" class="play-btn"><i class="fas fa-play"></i> Mainkan Chapter</a>
+                    </div>
+                </div>
+                
+                <!-- Chapter 7 -->
+                <div class="game-card animate delay-6">
+                    <div class="game-image">
+                        <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MDAiIGhlaWdodD0iMjAwIiB2aWV3Qm94PSIwIDAgNDAwIDIwMCI+PHJlY3Qgd2lkdGg9IjQwMCIgaGVpZ2h0PSIyMDAiIGZpbGw9IiMxNjIxM2UiLz48cGF0aCBkPSJNNTAgMTAwIEM1MCAxMDAgMTAwIDUwIDEwMCA1MCBDMTAwIDUwIDMwMCA1MCAzMDAgNTAgQzMwMCA1MCAzNTAgMTAwIDM1MCAxMDAgQzM1MCAxMDAgMzAwIDE1MCAzMDAgMTUwIEMzMDAgMTUwIDEwMCAxNTAgMTAwIDE1MCBDMTAwIDE1MCA1MCAxMDAgNTAgMTAwIiBmaWxsPSIjMGYzNDYwIiBvcGFjaXR5PSIwLjciLz48Y2lyY2xlIGN4PSIxNTAiIGN5PSI3NSIgcj0iMTUiIGZpbGw9IiNmZmYiLz48Y2lyY2xlIGN4PSIyNTAiIGN5PSI3NSIgcj0iMTUiIGZpbGw9IiNmZmYiLz48cGF0aCBkPSJNMTUwIDEyNSBMMjUwIDEyNSIgc3Ryb2tlPSIjZmZmIiBzdHJva2Utd2lkdGg9IjMiIGZpbGw9Im5vbmUiLz48dGV4dCB4PSIyMDAiIHk9IjE4MCIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE0IiBmaWxsPSIjZmZmIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5LYW50b3IgUG9saXNpPC90ZXh0Pjwvc3ZnPg==" alt="Kantor Polisi">
+                        <div class="chapter-badge">Chapter 7</div>
+                    </div>
+                    <div class="game-content">
+                        <h3 class="game-title">Konspirasi Kantor Polisi</h3>
+                        <p class="game-description">Sebuah dokumen rahasia hilang dari kantor polisi. Selidiki rekan-rekan detektif, temukan konspirasi, dan ungkap kebenaran di balik hilangnya dokumen penting tersebut.</p>
+                        <div class="game-features">
+                            <div class="feature"><i class="fas fa-user"></i> 6 Tersangka</div>
+                            <div class="feature"><i class="fas fa-search"></i> 6 Lokasi Investigasi</div>
+                            <div class="feature"><i class="fas fa-puzzle-piece"></i> Teka-teki Logika</div>
+                        </div>
+                        <a href="#" class="play-btn"><i class="fas fa-play"></i> Mainkan Chapter</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer id="about">
+        <div class="container footer-content">
+            <div class="footer-logo">
+                <h2>Detektif Case</h2>
+            </div>
+            <div class="social-links">
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-facebook"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-youtube"></i></a>
+            </div>
+            <p class="copyright">© 2025 Detektif Case. Semua hak cipta dilindungi.</p>
+        </div>
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+
+    <script>
+        // Theme toggle functionality
+        const themeToggle = document.getElementById('theme-toggle');
+        const themeIcon = themeToggle.querySelector('i');
+        
+        themeToggle.addEventListener('click', () => {
+            document.body.classList.toggle('light-mode');
+            
+            if (document.body.classList.contains('light-mode')) {
+                themeIcon.classList.remove('fa-moon');
+                themeIcon.classList.add('fa-sun');
+                localStorage.setItem('theme', 'light');
+            } else {
+                themeIcon.classList.remove('fa-sun');
+                themeIcon.classList.add('fa-moon');
+                localStorage.setItem('theme', 'dark');
+            }
+        });
+        
+        // Load saved theme
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme === 'light') {
+            document.body.classList.add('light-mode');
+            themeIcon.classList.remove('fa-moon');
+            themeIcon.classList.add('fa-sun');
+        }
+        
+        // Back to top button
+        const backToTopButton = document.getElementById('back-to-top');
+        
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTopButton.classList.add('active');
+            } else {
+                backToTopButton.classList.remove('active');
+            }
+            
+            // Update progress bar
+            const winHeight = window.innerHeight;
+            const docHeight = document.documentElement.scrollHeight;
+            const scrollTop = window.pageYOffset;
+            const trackLength = docHeight - winHeight;
+            const progress = Math.floor(scrollTop / trackLength * 100);
+            document.getElementById('progress-bar').style.width = progress + '%';
+        });
+        
+        backToTopButton.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+        
+        // Animasi scroll untuk navigasi
+        document.querySelectorAll('nav a, .hero-buttons a').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                if (this.getAttribute('href').startsWith('#')) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                    }
+                }
+            });
+        });
+        
+        // Animasi elemen saat scroll
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, observerOptions);
+        
+        document.querySelectorAll('.animate').forEach(element => {
+            observer.observe(element);
+        });
+        
+        // Efek parallax pada hero section
+        window.addEventListener('scroll', () => {
+            const scrollPosition = window.pageYOffset;
+            const hero = document.querySelector('.hero');
+            
+            if (hero) {
+                hero.style.backgroundPosition = `center ${scrollPosition * 0.5}px`;
+            }
+        });
+        
+        // Inisialisasi tooltip untuk tombol theme toggle
+        themeToggle.setAttribute('title', 'Toggle Dark/Light Mode');
+        
+        // Tambahkan efek hover pada card game
+        document.querySelectorAll('.game-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-12px)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0)';
+            });
+        });
+    </script>
+</body>
+</html>
