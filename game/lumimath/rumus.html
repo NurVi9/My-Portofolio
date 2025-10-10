@@ -286,7 +286,7 @@
 
             async function loadFormulas() {
                 try {
-                    const response = await fetch('/rumus/rumus.json');
+                    const response = await fetch('rumus.json');
                     if (!response.ok) {
                         throw new Error(`HTTP error! status: ${response.status}`);
                     }
@@ -344,12 +344,10 @@
                         }
                     });
 
-                    // Tampilkan atau sembunyikan judul section berdasarkan kartu yang terlihat
                     section.style.display = visibleCardsInSection > 0 ? 'block' : 'none';
                     totalVisibleCards += visibleCardsInSection;
                 });
                 
-                // Tampilkan atau sembunyikan pesan "tidak ada hasil"
                 noResultsMessage.style.display = totalVisibleCards === 0 ? 'block' : 'none';
             }
 
